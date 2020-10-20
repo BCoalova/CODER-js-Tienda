@@ -98,7 +98,7 @@ $(() => {
     for (const iterator of productos_data) {
         productos.push(new TodosLosProductos(iterator.identificador, iterator.nombre, iterator.precio, iterator.categoria, iterator.especificaciones))
         if (iterator.destacado === true) {
-            crearEstructura(iterator.identificador, $('.grid'), iterator.nombre, iterator.precio);
+            crearEstructura(iterator, $('.grid'));
         };
 
     };
@@ -124,7 +124,7 @@ $(() => {
                 for (const producto of productos_data) {
                     let identificadoEnProducto = producto.identificador
                     if (identificadoEnProducto.indexOf(elValueChecked) > -1) {
-                        crearEstructura(producto.identificador, $('.grid'), producto.nombre, producto.precio)
+                        crearEstructura(producto, $('.grid'))
                     }
                 }
             }
@@ -175,7 +175,7 @@ $(() => {
 
             if (productoEnMayuscula.indexOf(iputEnMayuscula) > -1) {
 
-                crearEstructura(iterator.identificador, $('.grid'), iterator.nombre, iterator.precio)
+                crearEstructura(iterator, $('.grid'))
             } 
         }
         
@@ -303,17 +303,17 @@ $(() => {
 //• EL LUGAR DONDE VA A SER INSERTADA
 //• EL NOMBRE DEL PRODUCTO
 //• EL PRECIO
-let crearEstructura =  (identificador, donde, nombre, precio) => {
+let crearEstructura =  (producto, donde) => {
     //TOMAMOS EL NOMBRE Y LE SACAMOS LOS ESPACIOS PARA USARLO EN EL SRC DE LA FOTO
-    let nombreParaFoto = nombre.replaceAll(' ', '_')
+    let nombreParaFoto = producto.nombre.replaceAll(' ', '_')
     //ESTRUCTURA BASICA DE PRODUCTO
     let estructuraBasica = $(
-        '<div class="unProducto fadeIn ' + identificador + '">' + 
-            '<p>' + nombre + '</p>' +
+        '<div class="unProducto fadeIn ' + producto.identificador + '">' + 
+            '<p>' + producto.nombre + '</p>' +
             '<img class="imgResponsive" src="img/productos/' + nombreParaFoto + '.jpg" >' +
             '<div class="d-flex justify-content-between align-items-center">' +
                 '<a class="btn btn-primary agregar">Agregar</a>' +
-                '<p class="precio">' + precio + '</p>' +
+                '<p class="precio">' + producto.precio + '</p>' +
             '</div>' +
         '</div>'
     )
