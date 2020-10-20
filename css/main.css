@@ -1,0 +1,425 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'roboto', sans-serif;
+  letter-spacing: .1rem;
+}
+
+body {
+  position: relative;
+}
+
+a:not([href]) {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.bootstrapOverwrites .btn-outline-primary {
+  border-color: #92c800;
+  color: #ffffff;
+}
+
+.bootstrapOverwrites .btn-outline-primary:hover {
+  background-color: #92c800;
+}
+
+.bootstrapOverwrites .btn-primary {
+  border-color: #92c800;
+  background-color: #92c800;
+}
+
+.bootstrapOverwrites .navbar {
+  background-color: #92c800 !important;
+}
+
+.bootstrapOverwrites .navbar a.navbar-brand {
+  color: #fff;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.bootstrapOverwrites .navbar form {
+  margin-right: 1.6rem;
+}
+
+.bootstrapOverwrites .navbar .nav-item {
+  position: relative;
+}
+
+.bootstrapOverwrites .navbar .nav-item img {
+  cursor: pointer;
+  width: 3rem;
+}
+
+.bootstrapOverwrites .navbar .nav-item span {
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+}
+
+.bootstrapOverwrites .navbar .nav-item span.show {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2rem;
+  width: 2rem;
+  background-color: green;
+  border-radius: 50%;
+  color: white;
+  font-size: .8rem;
+  font-size: 1.1rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.bg {
+  background-image: url(../img/bg-home.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+section {
+  min-height: 100vh;
+  padding-top: 7.46rem;
+  padding-bottom: 4rem;
+}
+
+section .amdBtn,
+section .intelBtn {
+  height: 100%;
+}
+
+form.form-inline {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+form.form-inline input.form-control {
+  width: calc(100% - 100px);
+}
+
+.grid-container {
+  background-color: #ffffff;
+  padding: 2rem;
+}
+
+.grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(12rem, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  grid-gap: 6rem 2.5rem;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: end;
+  width: 100%;
+}
+
+.imgResponsive {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+.breadcrumb-nav {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  width: 100%;
+}
+
+.unProducto {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: nowrap column;
+          flex-flow: nowrap column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 100%;
+  padding: 1rem;
+}
+
+.unProducto img {
+  margin-bottom: 1rem;
+}
+
+.unProducto div {
+  width: 100%;
+}
+
+.unProducto div .precio {
+  margin-bottom: 0;
+}
+
+.unProducto div .precio:before {
+  content: 'U$S ';
+}
+
+.toastContainer {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1031;
+}
+
+.toastContainer .toast {
+  padding: 1.2rem;
+  opacity: 1;
+  min-width: 20rem;
+  min-width: 35rem;
+  height: 142.17px;
+  font-size: 1rem;
+  color: #21232a;
+  margin-bottom: 1rem;
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+.toastContainer .toast.hide {
+  opacity: 0;
+  -webkit-transform: translateX(1000px);
+          transform: translateX(1000px);
+}
+
+.toastContainer .toast.agregado {
+  background-color: #92c800;
+}
+
+.toastContainer .toast.removido {
+  background-color: #dc3545;
+}
+
+.toastContainer .toast .toastInner p {
+  margin: 0;
+}
+
+.toastContainer .toast .toastInner p:first-child {
+  margin-bottom: .8rem;
+  border-bottom: 1px #21232a solid;
+}
+
+.toastContainer .toast .toastInner p:last-child:before {
+  content: 'U$S ';
+}
+
+.toastContainer .toast .close {
+  font-size: 1rem;
+  text-align: right;
+  cursor: pointer;
+  text-shadow: none;
+  font-weight: 500;
+}
+
+.toastContainer .toast .close:hover {
+  color: #21232a;
+}
+
+.carrito {
+  position: relative;
+}
+
+.carrito span#contador {
+  opacity: 0;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: #21232a;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #ffffff;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+.carrito span#contador.mostrar {
+  opacity: 1;
+}
+
+.carrito .carritoInner {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  -webkit-transform-origin: right top;
+          transform-origin: right top;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  padding: 2rem;
+  background-color: #ffffff;
+  max-width: 25rem;
+  min-width: 25rem;
+  -webkit-box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+}
+
+.carrito .carritoInner.noMostrar {
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transform: translateX(25rem);
+          transform: translateX(25rem);
+}
+
+.carrito .carritoInner .botonCerrar {
+  position: absolute;
+  top: .5rem;
+  left: .7rem;
+  color: #21232a;
+  cursor: pointer;
+}
+
+.carrito .carritoInner .carrito-item {
+  margin-bottom: .5rem;
+}
+
+.carrito .carritoInner .carrito-item p {
+  margin-bottom: .3rem;
+}
+
+.carrito .carritoInner .carrito-item .quitar {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  padding: .4rem;
+  line-height: .5rem;
+}
+
+.carrito .carritoInner .precioTotal {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: .5rem;
+  text-align: right;
+}
+
+.carrito .carritoInner .precioTotal #precioTotal:before {
+  content: 'U$S ';
+}
+
+.carrito .carritoInner .comprar {
+  display: inline-block;
+}
+
+.carrito .carritoInner .comprar.hidden {
+  display: none;
+}
+
+aside .categoriasCheckbox div {
+  margin-bottom: .5rem;
+}
+
+aside .categoriasCheckbox div label {
+  margin-bottom: 0;
+  width: 100%;
+  margin-left: .5rem;
+}
+
+aside .precioRange {
+  /* #rangeSlider_inversed {
+            direction: rtl
+        } */
+  /* FIREFOX */
+  /* IE*/
+  /* CHROME */
+}
+
+aside .precioRange output:before {
+  content: 'u$S ';
+}
+
+aside .precioRange input[type="range"] {
+  margin-bottom: .5rem;
+}
+
+aside .precioRange input[type="range"]::-moz-range-progress {
+  background-color: #92c800;
+}
+
+aside .precioRange input[type="range"]::-moz-range-track {
+  background-color: lightgray;
+}
+
+aside .precioRange input[type="range"]::-ms-fill-lower {
+  background-color: #92c800;
+}
+
+aside .precioRange input[type="range"]::-ms-fill-upper {
+  background-color: lightgray;
+}
+
+aside .precioRange input[type='range'] {
+  overflow: hidden;
+  -webkit-appearance: none;
+  background-color: #92c800;
+}
+
+aside .precioRange input#rangeSlider_inversed[type='range'] {
+  background-color: lightgray;
+}
+
+aside .precioRange input[type='range']::-webkit-slider-runnable-track {
+  height: 10px;
+  -webkit-appearance: none;
+  color: #92c800;
+  margin-top: -1px;
+}
+
+aside .precioRange input[type='range']::-webkit-slider-thumb {
+  width: 10px;
+  -webkit-appearance: none;
+  cursor: ew-resize;
+  height: 10px;
+  background: #21232a;
+  -webkit-box-shadow: -80px 0 0 80px lightgray;
+          box-shadow: -80px 0 0 80px lightgray;
+}
+
+aside .precioRange input#rangeSlider_inversed[type='range']::-webkit-slider-thumb {
+  -webkit-box-shadow: -80px 0 0 80px #92c800;
+          box-shadow: -80px 0 0 80px #92c800;
+}
+
+.fadeIn {
+  opacity: 0;
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+
+.fadeIn.faded {
+  opacity: 1;
+}
+/*# sourceMappingURL=main.css.map */

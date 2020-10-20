@@ -1,0 +1,281 @@
+
+.bg {
+    background-image: url(../img/bg-home.svg) ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+section {
+    min-height: 100vh;
+    padding-top: 7.46rem;
+    padding-bottom: 4rem;    
+    .amdBtn,
+    .intelBtn {
+        height: 100%;
+    }
+}
+form.form-inline {
+    align-self: center;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    input.form-control {
+        width: calc(100% - 100px);
+    }
+}
+.grid-container {
+    background-color: #ffffff;
+    padding: 2rem;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+    grid-gap: 6rem 2.5rem ;
+    
+    align-items: end;
+    width: 100%;
+    
+}
+.imgResponsive {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+} 
+
+.breadcrumb-nav {
+    align-self: flex-start;
+    width:100%;
+}
+
+.unProducto {
+    display: flex;
+    flex-flow: nowrap column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 1rem;
+    
+    img {
+        margin-bottom: 1rem;
+    }
+    div {
+        width: 100%;
+        .precio {
+            margin-bottom: 0;
+            &:before {
+                content: 'U$S '
+            }
+        }
+    }
+}
+
+
+
+.toastContainer {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 1031;
+    .toast {
+        padding: 1.2rem;
+        opacity: 1;
+        min-width: 20rem;
+        min-width: 35rem;
+        height: 142.17px;
+        font-size: 1rem;
+        color: $negro;
+        margin-bottom: 1rem;
+        transition: all 1s ease-in-out;
+        transform: translateX(0);
+        
+        &.hide {
+            opacity: 0;
+            transform: translateX(1000px);
+        }
+        &.agregado {
+            background-color: $verde;
+        }
+        &.removido {
+            background-color: $rojo;
+        }
+        .toastInner {
+            p {
+                margin: 0;
+                &:first-child {
+                    margin-bottom: .8rem;
+                    border-bottom: 1px $negro solid;
+                }
+                &:last-child {
+                    &:before {
+                        content: 'U$S '
+                    }
+                }
+            }
+        }
+        .close {
+            font-size: 1rem;
+            text-align: right;
+            cursor: pointer;
+            text-shadow: none;
+            font-weight: 500;
+            &:hover {
+                color: $negro;
+            }
+        }
+    }
+}
+
+.carrito {
+    position: relative;
+    span#contador {
+        opacity:0;
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        background-color: $negro;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        transition: all .2s ease-in-out;
+        &.mostrar {
+            opacity: 1;
+        }
+    }
+    .carritoInner {
+
+        transform: translateX(0);
+        transform-origin: right top;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        transition: all .3s ease-in-out;
+        padding: 2rem;
+        background-color: #ffffff;
+        max-width: 25rem;
+        min-width: 25rem;
+        box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.1);
+        &.noMostrar {
+            transform: scale(0);
+            transform: translateX(25rem);
+        }
+        .botonCerrar {
+            position: absolute;
+            top: .5rem;
+            left: .7rem;
+            color:$negro;
+            cursor: pointer;
+        }
+        .carrito-item {
+            margin-bottom: .5rem;
+            p {
+                margin-bottom: .3rem;
+            }
+            .quitar {
+                align-self: center;
+                padding: .4rem;
+                line-height: .5rem;
+            }
+        }
+        .precioTotal {
+            border-top: 1px solid rgba(0,0,0,.1);
+            padding-top: .5rem;
+            text-align: right;
+            #precioTotal {
+                
+                &:before {
+                    content: 'U$S '
+                }
+            }
+        }
+        
+        .comprar {
+            display: inline-block;
+            &.hidden {
+                display: none;
+            }
+        }
+    }
+
+}
+
+
+aside {
+    .categoriasCheckbox {
+        div {
+            margin-bottom: .5rem;
+            label {
+                margin-bottom: 0;
+                width: 100%;
+                margin-left: .5rem;
+            }
+        }
+    }
+    .precioRange {
+        /* #rangeSlider_inversed {
+            direction: rtl
+        } */
+        output {
+            &:before {
+                content: 'u$S '
+            }
+        }
+        input[type="range"] {
+            margin-bottom: .5rem;
+        }
+        /* FIREFOX */
+        input[type="range"]::-moz-range-progress {
+            background-color: $verde; 
+        }
+        input[type="range"]::-moz-range-track {  
+            background-color: lightgray;
+        }
+        /* IE*/
+        input[type="range"]::-ms-fill-lower {
+            background-color: $verde; 
+        }
+        input[type="range"]::-ms-fill-upper {  
+            background-color: lightgray;
+        }
+        /* CHROME */
+        input[type='range'] {
+            overflow: hidden;
+            -webkit-appearance: none;
+            background-color:$verde;
+        }
+        input#rangeSlider_inversed[type='range'] {
+            background-color:lightgray;
+        }
+        input[type='range']::-webkit-slider-runnable-track {
+            height: 10px;
+            -webkit-appearance: none;
+            color: $verde;
+            margin-top: -1px;
+        }
+        input[type='range']::-webkit-slider-thumb {
+            width: 10px;
+            -webkit-appearance: none;
+            cursor: ew-resize;
+            height: 10px;
+            background: $negro;
+            box-shadow: -80px 0 0 80px lightgray;
+        }
+        input#rangeSlider_inversed[type='range']::-webkit-slider-thumb {
+            box-shadow: -80px 0 0 80px $verde;
+        }
+    }
+    
+
+    
+}
+
+.fadeIn {
+    opacity: 0;
+    transition: all 1s ease-in-out;
+    &.faded {
+        opacity: 1;
+    }
+}
