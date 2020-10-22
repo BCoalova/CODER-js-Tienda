@@ -45,30 +45,32 @@ let noHayProductos = $('<p class="noHayProductos">Agregá productos a tu Carrito
                 // --------------------------------------------//
 let categoriasCheckbox = $(
     '<hr>' +
-    '<p>Categorias:</p>' +
-    '<form onsubmit="return false" class="categoriasCheckbox">' +
-        '<div class="d-flex justify-content-between align-items-center">' +
-            '<input name="identificador" value="AMD_CPU" id="AMD_CPU" type="radio">' +
-            '<label for="AMD_CPU">CPU AMD</label>' +
-        '</div>' + 
-        '<div class="d-flex justify-content-between align-items-center">' +
-            '<input name="identificador" value="AMD_MOBO" id="AMD_MOBO" type="radio">' +
-            '<label for="AMD_MOBO">Mother AMD</label>' +
-        '</div>' + 
-        '<div class="d-flex justify-content-between align-items-center">'+ 
-            '<input name="identificador" value="Intel_CPU" id="Intel_CPU" type="radio">' +
-            '<label for="Intel_CPU">CPU Intel</label>' +
-        '</div>' +
-        '<div class="d-flex justify-content-between align-items-center">' +
-            '<input name="identificador" value="Intel_MOBO" id="Intel_MOBO" type="radio">' +
-            '<label for="Intel_MOBO">Mother Intel</label>' +
-        '</div>' + 
-        '<div class="d-flex justify-content-between align-items-center">' +
-            '<input name="identificador" value="GPU" id="GPU" type="radio">' +
-            '<label for="GPU">Tarjeta Gráfica</label>' +
-        '</div>' + 
-        '<input class="btn btn-primary" type="submit" value="Aplicar">' +
-    '</form>'
+    '<div class="categorias">' +
+        '<p>Categorias:</p>' +
+        '<form onsubmit="return false" class="categoriasCheckbox">' +
+            '<div class="d-flex justify-content-between align-items-center">' +
+                '<input name="identificador" value="AMD_CPU" id="AMD_CPU" type="radio">' +
+                '<label for="AMD_CPU">CPU AMD</label>' +
+            '</div>' + 
+            '<div class="d-flex justify-content-between align-items-center">' +
+                '<input name="identificador" value="AMD_MOBO" id="AMD_MOBO" type="radio">' +
+                '<label for="AMD_MOBO">Mother AMD</label>' +
+            '</div>' + 
+            '<div class="d-flex justify-content-between align-items-center">'+ 
+                '<input name="identificador" value="Intel_CPU" id="Intel_CPU" type="radio">' +
+                '<label for="Intel_CPU">CPU Intel</label>' +
+            '</div>' +
+            '<div class="d-flex justify-content-between align-items-center">' +
+                '<input name="identificador" value="Intel_MOBO" id="Intel_MOBO" type="radio">' +
+                '<label for="Intel_MOBO">Mother Intel</label>' +
+            '</div>' + 
+            '<div class="d-flex justify-content-between align-items-center">' +
+                '<input name="identificador" value="GPU" id="GPU" type="radio">' +
+                '<label for="GPU">Tarjeta Gráfica</label>' +
+            '</div>' + 
+            '<input class="btn btn-primary" type="submit" value="Aplicar">' +
+        '</form>' +
+    '</div>'
 );
 let precioRango = $(
     '<hr>' +
@@ -124,11 +126,24 @@ $(() => {
                 for (const producto of productos_data) {
                     let identificadoEnProducto = producto.identificador
                     if (identificadoEnProducto.indexOf(elValueChecked) > -1) {
-                        crearEstructura(producto, $('.grid'))
-                    }
-                }
-            }
-        }
+                        crearEstructura(producto, $('.grid'));
+                        
+                    };
+                };
+            };
+        };
+        
+        // CIERRA EL FILRO AL SER UTILIZADO
+        //AGREGA BOTÓN PARA ABRÍR EL FILTRO
+        //EJ DE CALLBACK
+        $(e.target).slideUp(400, () => {
+            let toggleBtn = $('<a class="toggle btn btn-primary">Volver a filtrar</a>')
+            $(e.target.parentElement).append(toggleBtn)
+            $(toggleBtn).on('click', (event) => {
+                $(e.target).slideDown(300)
+                $(event.target).remove()
+            })
+        })
         
     });
                 // ---------------------------------------------//
@@ -138,8 +153,6 @@ $(() => {
                 // ---------------------------------------------//
     $('aside').append(precioRango)
     $('aside').on('submit', 'form.precioRange', (e) => {
-        console.log(e.target[2].value)
-        console.log(e.target[0].value)
         for (const producto of $('.unProducto')) {
             let precioEnProducto = $(producto).children('div')[0].lastChild.innerHTML
             if (precioEnProducto > e.target[0].value && precioEnProducto < e.target[2].value) {
@@ -161,6 +174,7 @@ $(() => {
                 // ---------------- BUSCADOR ----------------//
                 // ------------------------------------------//
     $('form.buscador').submit( (e) => { 
+        
         //LO QUE INGRESA EL USUARIO
         let inputDeUsuario = e.target[0].value
         //LO QUE INGRESA EL USUARIO EN MAYUSCULA
@@ -172,32 +186,28 @@ $(() => {
         $('.grid-container').prepend('<h3 class="col-md-12">Resultados para: ' + inputDeUsuario + '</h3>');
         for (const iterator of productos_data) {
             let productoEnMayuscula = iterator.nombre.toUpperCase()
-
             if (productoEnMayuscula.indexOf(iputEnMayuscula) > -1) {
-
                 crearEstructura(iterator, $('.grid'))
             } 
         }
         
     });
-    //
-    $('.carritoInner').prepend(noHayProductos)
+
                 // --------------------------------------//
                 // -------------- AGREGAR ---------------//
                 // ------------- PRODUCTOS --------------//
                 // ------------ AL CARRITO --------------//
                 // --------------------------------------//
-
+    $('.carritoInner').prepend(noHayProductos)
     $('.grid-container').on('click', '.unProducto a.agregar', function(e){
+        e.stopPropagation();
         $('.carritoInner p.noHayProductos').remove()
         cero++;
         let contador = $('#contador')
         //PRECIO EN EL PRODUCTO
-        let precioP = e.currentTarget.nextSibling
-        let precio = precioP.innerHTML
+        let precio = e.currentTarget.nextSibling.innerHTML
         //NOMBRE EN EL PRODUCTO
-        let nombreP = e.currentTarget.parentElement.parentElement.firstChild
-        let nombre = nombreP.innerHTML
+        let nombre = e.currentTarget.parentElement.parentElement.firstChild.innerHTML
         //CREAMOS LA NOTIFICACIÓN
         crearToast(nombre, precio, 'agregado', 'agregado al')
         //EVENTO PARA CERRAR LA NOTIFICACIÓN CON EL BOTON CERRAR EN LA MISMA
@@ -234,6 +244,7 @@ $(() => {
                 // ------------ DEL CARRITO --------------//
                 // ---------------------------------------//
     $('.carritoInner').on('click', 'a.quitar', (e) => {
+        e.stopPropagation()
         let nombre = e.target.previousSibling.firstChild.innerHTML
         let precio = e.target.previousSibling.lastChild.innerHTML
         //ANTES DE DISMINUIR CERO UTILIZAMOS SU VALOR PARA 
@@ -262,8 +273,9 @@ $(() => {
 /*         console.log(precioN);
         console.log(total - precioN);
         console.log(totalString); */
-        $('span#precioTotal')[0].textContent = total - precioN
-        $('a.comprar').addClass('hidden')
+        $('span#precioTotal')[0].textContent = total - precioN;
+        $('a.comprar').addClass('hidden');
+        
     });
     
 
@@ -273,21 +285,24 @@ $(() => {
                 // ------------- EL CARRITO -------------//
                 // --------------------------------------//
 
-    $('.carrito').on('click', 'img', (e) => { 
+    $('.carrito').on('click', 'svg', (e) => { 
         $('.carritoInner').toggleClass('noMostrar');
+        //
+        $('#carrito').toggleClass('abierto')
         e.stopPropagation();
     });
     //PREVIENE QUE EL CARRITO SE CIERRE CUANDO SE HACE CLIC EN
     //DENTRO DEL CARRITO DESPLEGADO
     $('.carritoInner').click((e) => {e.stopPropagation();})
+
     //CIERRA EL CARRITO CUANDO SE HACE CLIC AFUERA DEL CARRITO
     $('body').click((e) => {
-        
         let carrito = $('.carritoInner');
         if (carrito.hasClass('noMostrar') ) {
             //nada
         } else {
             $('.carritoInner').toggleClass('noMostrar');
+            $('#carrito').toggleClass('abierto')
         }
         e.stopPropagation();
     })
@@ -316,14 +331,14 @@ let crearEstructura =  (producto, donde) => {
                 '<p class="precio">' + producto.precio + '</p>' +
             '</div>' +
         '</div>'
-    )
+    );
     $(donde).append(estructuraBasica);
     //
-    $('.unProducto').each(function(i, el) { 
+    /* $('.unProducto').each(function(i, el) { 
         $(el).delay(100*i).queue(function() {
             $(this).addClass('faded').dequeue();
         });
-    });
+    }); */
     
     
     
@@ -369,12 +384,13 @@ let crearProductoEnCarrito = (donde, nombre, precio, imagen) => {
             '</div>' +
             '<a class="btn btn-danger quitar">-</a>' +
         '</div>'
-    );
+    ).fadeIn(3000);
     $(donde).prepend(nuevoProductoEnCarrito);
 }
 
 let botonCerrarToast = () => {
     $('.toast a').click(function (e) { 
+        e.stopPropagation();
         $(this).parent().parent().addClass('hide')
         setTimeout(function(){ 
             $(e.target.parentElement.parentElement).remove()

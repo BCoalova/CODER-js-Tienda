@@ -144,65 +144,104 @@ form.form-inline {
             opacity: 1;
         }
     }
-    .carritoInner {
-
-        transform: translateX(0);
-        transform-origin: right top;
-        position: fixed;
-        top: 0;
-        right: 0;
-        height: 100%;
-        transition: all .3s ease-in-out;
-        padding: 2rem;
-        background-color: #ffffff;
-        max-width: 25rem;
-        min-width: 25rem;
-        box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.1);
-        &.noMostrar {
-            transform: scale(0);
-            transform: translateX(25rem);
-        }
-        .botonCerrar {
-            position: absolute;
-            top: .5rem;
-            left: .7rem;
-            color:$negro;
-            cursor: pointer;
-        }
-        .carrito-item {
-            margin-bottom: .5rem;
-            p {
-                margin-bottom: .3rem;
-            }
-            .quitar {
-                align-self: center;
-                padding: .4rem;
-                line-height: .5rem;
-            }
-        }
-        .precioTotal {
-            border-top: 1px solid rgba(0,0,0,.1);
-            padding-top: .5rem;
-            text-align: right;
-            #precioTotal {
-                
-                &:before {
-                    content: 'U$S '
-                }
-            }
-        }
+    svg#carrito {
+        width: 4rem;
+        fill: white;
         
-        .comprar {
-            display: inline-block;
-            &.hidden {
-                display: none;
+        #cruz {
+            opacity: 0;
+            transform-origin: center center;
+            transform:  translateY(-70%);
+            transition: all .2s ease-in-out;
+        }
+        #centro {
+            transition: all .2s ease-in-out;
+            opacity: 1;
+            .st1 {
+                transition: all .2s ease-in-out;
+                transform: translateX(0);
+            }
+            .st2 {
+                transition: all .2s ease-in-out;
+                transform: translateX(0);
+            }
+
+        }
+        &.abierto {
+            #cruz {
+                transition: all .2s ease-in-out;
+                opacity: 1;
+                transform: translateY(0);
+            }
+            #centro {
+                transition: all .2s ease-in-out;
+                opacity: 0;
+                .st1 {
+                    transition: all .2s ease-in-out;
+                    transform: translateX(18%);
+                }
+                .st2 {
+                    transition: all .2s ease-in-out;
+                    transform: translateX(-18%);
+                }
             }
         }
     }
 
 }
 
-
+.carritoInner {
+    transform: translateX(0);
+    position: fixed;
+    top: 89.22px;
+    right: 0;
+    height: 100%;
+    transition: all .3s ease-in-out;
+    padding: 2rem;
+    background-color: #ffffff;
+    max-width: 25rem;
+    min-width: 25rem;
+    box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.1);
+    &.noMostrar {
+        transform: translateX(25rem);
+    }
+    .botonCerrar {
+        position: absolute;
+        top: .5rem;
+        left: .7rem;
+        color:$negro;
+        cursor: pointer;
+    }
+    .carrito-item {
+        margin-bottom: .5rem;
+        p {
+            margin-bottom: .3rem;
+        }
+        .quitar {
+            align-self: center;
+            padding: .4rem;
+            line-height: .5rem;
+        }
+    }
+    .precioTotal {
+        border-top: 1px solid rgba(0,0,0,.1);
+        padding-top: .5rem;
+        text-align: right;
+        #precioTotal {
+            
+            &:before {
+                content: 'U$S '
+            }
+        }
+    }
+    
+    .comprar {
+        display: inline-block;
+        &.hidden {
+            display: none;
+        }
+    }
+}
 aside {
     .categoriasCheckbox {
         div {
@@ -272,10 +311,10 @@ aside {
     
 }
 
-.fadeIn {
+/* .fadeIn {
     opacity: 0;
     transition: all 1s ease-in-out;
     &.faded {
         opacity: 1;
     }
-}
+} */

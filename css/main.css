@@ -270,13 +270,74 @@ form.form-inline input.form-control {
   opacity: 1;
 }
 
-.carrito .carritoInner {
+.carrito svg#carrito {
+  width: 4rem;
+  fill: white;
+}
+
+.carrito svg#carrito #cruz {
+  opacity: 0;
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+  -webkit-transform: translateY(-70%);
+          transform: translateY(-70%);
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+.carrito svg#carrito #centro {
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  opacity: 1;
+}
+
+.carrito svg#carrito #centro .st1 {
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
   -webkit-transform: translateX(0);
           transform: translateX(0);
-  -webkit-transform-origin: right top;
-          transform-origin: right top;
+}
+
+.carrito svg#carrito #centro .st2 {
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+.carrito svg#carrito.abierto #cruz {
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+
+.carrito svg#carrito.abierto #centro {
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  opacity: 0;
+}
+
+.carrito svg#carrito.abierto #centro .st1 {
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  -webkit-transform: translateX(18%);
+          transform: translateX(18%);
+}
+
+.carrito svg#carrito.abierto #centro .st2 {
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  -webkit-transform: translateX(-18%);
+          transform: translateX(-18%);
+}
+
+.carritoInner {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
   position: fixed;
-  top: 0;
+  top: 89.22px;
   right: 0;
   height: 100%;
   -webkit-transition: all .3s ease-in-out;
@@ -289,14 +350,12 @@ form.form-inline input.form-control {
           box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
 }
 
-.carrito .carritoInner.noMostrar {
-  -webkit-transform: scale(0);
-          transform: scale(0);
+.carritoInner.noMostrar {
   -webkit-transform: translateX(25rem);
           transform: translateX(25rem);
 }
 
-.carrito .carritoInner .botonCerrar {
+.carritoInner .botonCerrar {
   position: absolute;
   top: .5rem;
   left: .7rem;
@@ -304,15 +363,15 @@ form.form-inline input.form-control {
   cursor: pointer;
 }
 
-.carrito .carritoInner .carrito-item {
+.carritoInner .carrito-item {
   margin-bottom: .5rem;
 }
 
-.carrito .carritoInner .carrito-item p {
+.carritoInner .carrito-item p {
   margin-bottom: .3rem;
 }
 
-.carrito .carritoInner .carrito-item .quitar {
+.carritoInner .carrito-item .quitar {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
@@ -320,21 +379,21 @@ form.form-inline input.form-control {
   line-height: .5rem;
 }
 
-.carrito .carritoInner .precioTotal {
+.carritoInner .precioTotal {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding-top: .5rem;
   text-align: right;
 }
 
-.carrito .carritoInner .precioTotal #precioTotal:before {
+.carritoInner .precioTotal #precioTotal:before {
   content: 'U$S ';
 }
 
-.carrito .carritoInner .comprar {
+.carritoInner .comprar {
   display: inline-block;
 }
 
-.carrito .carritoInner .comprar.hidden {
+.carritoInner .comprar.hidden {
   display: none;
 }
 
@@ -413,13 +472,11 @@ aside .precioRange input#rangeSlider_inversed[type='range']::-webkit-slider-thum
           box-shadow: -80px 0 0 80px #92c800;
 }
 
-.fadeIn {
-  opacity: 0;
-  -webkit-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
-}
-
-.fadeIn.faded {
-  opacity: 1;
-}
+/* .fadeIn {
+    opacity: 0;
+    transition: all 1s ease-in-out;
+    &.faded {
+        opacity: 1;
+    }
+} */
 /*# sourceMappingURL=main.css.map */
