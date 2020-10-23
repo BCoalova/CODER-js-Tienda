@@ -1,87 +1,12 @@
-let productos_data = [
-    { "identificador": "AMD_CPU_1", "nombre": "Ryzen 3 1200", "precio": 109, "categoria": "CPU", "especificaciones": {"Cores": 4, "Threads" : 4, "Socket": "AM4", "Soporta Memoria": "DDR4-2667", "Consumo": "65W", "Generación": "Zen"}, "destacado": false}, 
-    { "identificador": "AMD_CPU_2", "nombre": "Ryzen 3 1300X", "precio": 129, "categoria": "CPU", "especificaciones": {"Cores": 4, "Threads" : 4, "Socket": "AM4", "Soporta Memoria": "DDR4-2667", "Consumo": "65W", "Generación": "Zen"}, "destacado": false}, 
-    { "identificador": "AMD_CPU_3", "nombre": "Ryzen 5 1400", "precio": 169, "categoria": "CPU", "especificaciones": {"Cores": 4, "Threads" : 8, "Socket": "AM4", "Soporta Memoria": "DDR4-2667", "Consumo": "65W", "Generación": "Zen"}, "destacado": false}, 
-    { "identificador": "AMD_CPU_4", "nombre": "Ryzen 5 1500X", "precio": 189, "categoria": "CPU", "especificaciones": {"Cores": 4, "Threads" : 8, "Socket": "AM4", "Soporta Memoria": "DDR4-2667", "Consumo": "65W", "Generación": "Zen"}, "destacado": false}, 
-    { "identificador": "AMD_CPU_5", "nombre": "Ryzen 5 1600", "precio": 219, "categoria": "CPU", "especificaciones": {"Cores": 6, "Threads" : 12, "Socket": "AM4", "Soporta Memoria": "DDR4-2667", "Consumo": "65W", "Generación": "Zen"}, "destacado": false}, 
-    { "identificador": "AMD_CPU_6", "nombre": "Ryzen 5 1600X", "precio": 219, "categoria": "CPU", "especificaciones": {"Cores": 6, "Threads" : 12, "Socket": "AM4", "Soporta Memoria": "DDR4-2667", "Consumo": "95W", "Generación": "Zen"}, "destacado": false}, 
-    { "identificador": "AMD_CPU_7", "nombre": "Ryzen 7 1700", "precio": 329, "categoria": "CPU", "especificaciones": {"Cores": 8, "Threads" : 16, "Socket": "AM4", "Soporta Memoria": "DDR4-2667", "Consumo": "95W", "Generación": "Zen"}, "destacado": false}, 
-    { "identificador": "AMD_CPU_8", "nombre": "Ryzen 7 1700X", "precio": 399, "categoria": "CPU", "especificaciones": {"Cores": 8, "Threads" : 16, "Socket": "AM4", "Soporta Memoria": "DDR4-2667", "Consumo": "95W", "Generación": "Zen"}, "destacado": false}, 
-    { "identificador": "AMD_CPU_9", "nombre": "Ryzen 7 1800X", "precio": 499, "categoria": "CPU", "especificaciones": {"Cores": 8, "Threads" : 16, "Socket": "AM4", "Soporta Memoria": "DDR4-2667", "Consumo": "95W", "Generación": "Zen"}, "destacado": false}, 
-    
-    { "identificador": "AMD_CPU_11", "nombre": "Ryzen 5 1600 AF", "precio": 85, "categoria": "CPU", "especificaciones": {"Cores": 6, "Threads" : 12, "Socket": "AM4", "Soporta Memoria": "DDR4-2933", "Consumo": "65W", "Generación": "Zen +"}, "destacado": false}, 
-    { "identificador": "AMD_CPU_12", "nombre": "Ryzen 5 2600X", "precio": 222, "categoria": "CPU", "especificaciones": {"Cores": 6, "Threads" : 12, "Socket": "AM4", "Soporta Memoria": "DDR4-2933", "Consumo": "95W", "Generación": "Zen +"}, "destacado": false}, 
-    { "identificador": "AMD_CPU_13", "nombre": "Ryzen 7 2700", "precio": 286, "categoria": "CPU", "especificaciones": {"Cores": 8, "Threads" : 16, "Socket": "AM4", "Soporta Memoria": "DDR4-2933", "Consumo": "65W", "Generación": "Zen +"}, "destacado": false}, 
-    { "identificador": "AMD_CPU_14", "nombre": "Ryzen 7 2700X", "precio": 329, "categoria": "CPU", "especificaciones": {"Cores": 8, "Threads" : 16, "Socket": "AM4", "Soporta Memoria": "DDR4-2933", "Consumo": "105W", "Generación": "Zen +"}, "destacado": false}, 
-    { "identificador": "AMD_CPU_15", "nombre": "Ryzen 3 3100", "precio": 99, "categoria": "CPU", "especificaciones": {"Cores": 4, "Threads" : 8, "Socket": "AM4", "Soporta Memoria": "DDR4-3200", "Consumo": "65W", "Generación": "Zen 2"}, "destacado": false}, 
-    { "identificador": "AMD_CPU_16", "nombre": "Ryzen 3 3300X", "precio": 120, "categoria": "CPU", "especificaciones": {"Cores": 4, "Threads" : 8, "Socket": "AM4", "Soporta Memoria": "DDR4-3200", "Consumo": "65W", "Generación": "Zen 2"}, "destacado": false}, 
-    { "identificador": "AMD_CPU_17", "nombre": "Ryzen 5 3600", "precio": 199, "categoria": "CPU", "especificaciones": {"Cores": 6, "Threads" : 12, "Socket": "AM4", "Soporta Memoria": "DDR4-3200", "Consumo": "65W", "Generación": "Zen 2"}, "destacado": true}, 
-    { "identificador": "AMD_CPU_18", "nombre": "Ryzen 5 3600X", "precio": 249, "categoria": "CPU", "especificaciones": {"Cores": 6, "Threads" : 12, "Socket": "AM4", "Soporta Memoria": "DDR4-3200", "Consumo": "95W", "Generación": "Zen 2"}, "destacado": false}, 
-    { "identificador": "AMD_CPU_19", "nombre": "Ryzen 5 3600XT", "precio": 249, "categoria": "CPU", "especificaciones": {"Cores": 6, "Threads" : 12, "Socket": "AM4", "Soporta Memoria": "DDR4-3200", "Consumo": "95W", "Generación": "Zen 2"}, "destacado": false}, 
-    { "identificador": "AMD_CPU_20", "nombre": "Ryzen 7 3700X", "precio": 329, "categoria": "CPU", "especificaciones": {"Cores": 8, "Threads" : 16, "Socket": "AM4", "Soporta Memoria": "DDR4-3200", "Consumo": "65W", "Generación": "Zen 2"}, "destacado": true}, 
-    { "identificador": "AMD_CPU_21", "nombre": "Ryzen 7 3800X", "precio": 399, "categoria": "CPU", "especificaciones": {"Cores": 8, "Threads" : 16, "Socket": "AM4", "Soporta Memoria": "DDR4-3200", "Consumo": "105W", "Generación": "Zen 2"}, "destacado": false}, 
-    { "identificador": "AMD_CPU_22", "nombre": "Ryzen 7 3800XT", "precio": 399, "categoria": "CPU", "especificaciones": {"Cores": 8, "Threads" : 16, "Socket": "AM4", "Soporta Memoria": "DDR4-3200", "Consumo": "105W", "Generación": "Zen 2"}, "destacado": false}, 
-    { "identificador": "AMD_CPU_23", "nombre": "Ryzen 9 3900X", "precio": 499, "categoria": "CPU", "especificaciones": {"Cores" : 12, "Threads" : 24, "Socket": "AM4", "Soporta Memoria": "DDR4-3200", "Consumo": "105W", "Generación": "Zen 2"}, "destacado": true}, 
-    { "identificador": "AMD_CPU_24", "nombre": "Ryzen 9 3900XT", "precio": 499, "categoria": "CPU", "especificaciones": {"Cores" : 12, "Threads" : 24, "Socket": "AM4", "Soporta Memoria": "DDR4-3200", "Consumo": "105W", "Generación": "Zen 2"}, "destacado": false},
-    
-    { "identificador": "AMD_MOBO_1", "nombre": "Prime A520M-A", "precio": 80, "categoria": "MOBO", "especificaciones": {"Chipset" : "A520", "Socket": "AM4" , "Tamaño": "mATX"}, "destacado": false},
-    { "identificador": "AMD_MOBO_2", "nombre": "Prime B350-Plus", "precio": 98, "categoria": "MOBO", "especificaciones": {"Chipset": "B350", "Socket": "AM4", "Tamaño": "ATX"}, "destacado": false},
-    { "identificador": "AMD_MOBO_3", "nombre": "Prime B550M-K", "precio": 122, "categoria": "MOBO", "especificaciones": {"Chipset": "B550", "Socket": "AM4", "Tamaño": "mATX"}, "destacado": false},
-    { "identificador": "AMD_MOBO_4", "nombre": "Prime X370-Pro", "precio": 120, "categoria": "MOBO", "especificaciones": {"Chipset": "X370", "Socket": "AM4", "Tamaño": "ATX"}, "destacado": false},
-    { "identificador": "AMD_MOBO_5", "nombre": "Prime X470-Pro", "precio": 125, "categoria": "MOBO", "especificaciones": {"Chipset": "X470", "Socket": "AM4", "Tamaño": "ATX"}, "destacado": false},
-    { "identificador": "AMD_MOBO_6", "nombre": "Prime X570-P", "precio": 130, "categoria": "MOBO", "especificaciones": {"Chipset": "X570", "Socket": "AM4", "Tamaño": "ATX"}, "destacado": false},
-    { "identificador": "AMD_MOBO_7", "nombre": "Prime X570-Pro", "precio": 136, "categoria": "MOBO", "especificaciones": {"Chipset": "X570", "Socket": "AM4", "Tamaño": "ATX"}, "destacado": true},
-    { "identificador": "AMD_MOBO_8", "nombre": "ROG Crosshair VII Hero", "precio": 320, "categoria": "MOBO", "especificaciones": {"Chipset": "X470", "Socket": "AM4", "Tamaño": "ATX"}, "destacado": false},
-    { "identificador": "AMD_MOBO_9", "nombre": "ROG Crosshair VIII Hero", "precio": 359, "categoria": "MOBO", "especificaciones": {"Chipset": "X570", "Socket": "AM4", "Tamaño": "ATX"}, "destacado": true},
-    { "identificador": "AMD_MOBO_10", "nombre": "ROG Strix B450-F Gaming", "precio": 189, "categoria": "MOBO", "especificaciones": {"Chipset": "B450", "Socket": "AM4", "Tamaño": "ATX"}, "destacado": false},
-    { "identificador": "AMD_MOBO_11", "nombre": "ROG Strix B550-F GAMING", "precio": 203, "categoria": "MOBO", "especificaciones": {"Chipset": "B550", "Socket": "AM4", "Tamaño": "ATX"}, "destacado": false},
-    { "identificador": "AMD_MOBO_12", "nombre": "ROG Strix X470-F Gaming", "precio": 273, "categoria": "MOBO", "especificaciones": {"Chipset": "X470", "Socket": "AM4", "Tamaño": "ATX"}, "destacado": false},
-    { "identificador": "AMD_MOBO_13", "nombre": "ROG Strix X570-F Gaming", "precio": 299, "categoria": "MOBO", "especificaciones": {"Chipset": "X570", "Socket": "AM4", "Tamaño": "ATX"}, "destacado": true},
-    { "identificador": "AMD_MOBO_14", "nombre": "TUF B450-Plus Gaming", "precio": 109, "categoria": "MOBO", "especificaciones": {"Chipset": "B450", "Socket": "AM4", "Tamaño": "ATX"}, "destacado": false},
-    { "identificador": "AMD_MOBO_15", "nombre": "TUF GAMING A520M-PLUS", "precio": 161, "categoria": "MOBO", "especificaciones": {"Chipset": "A520M", "Socket": "AM4", "Tamaño": "mATX"}, "destacado": false},
-    { "identificador": "AMD_MOBO_16", "nombre": "TUF Gaming B550-Plus", "precio": 159, "categoria": "MOBO", "especificaciones": {"Chipset": "B550", "Socket": "AM4", "Tamaño": "ATX"}, "destacado": false},
-    { "identificador": "AMD_MOBO_17", "nombre": "TUF Gaming X570-Plus", "precio": 161, "categoria": "MOBO", "especificaciones": {"Chipset": "X570", "Socket": "AM4", "Tamaño": "ATX"}, "destacado": false},
-    { "identificador": "AMD_MOBO_18", "nombre": "TUF X470-Plus Gaming", "precio": 169, "categoria": "MOBO", "especificaciones": {"Chipset": "X470", "Socket": "AM4", "Tamaño": "ATX"}, "destacado": true},
-    
-    { "identificador": "Intel_CPU_1", "nombre": "Intel Core i9-7980XE", "precio": 817, "categoria": "CPU", "especificaciones": {"Cores": 4, "Threads" : 4, "Socket": "LGA 2066", "Soporta Memoria": "DDR4-2400", "Consumo": "165W", "Generación": "7Gen"}, "destacado": false},
-    { "identificador": "Intel_CPU_2", "nombre": "Intel Core i7-7700", "precio": 357, "categoria": "CPU", "especificaciones": {"Cores": 4, "Threads" : 8, "Socket": "LGA 1151", "Soporta Memoria": "DDR4-2133", "Consumo": "65W", "Generación": "7Gen"}, "destacado": false},
-    { "identificador": "Intel_CPU_3", "nombre": "Intel Core i5-7640X", "precio": 319, "categoria": "CPU", "especificaciones": {"Cores": 4, "Threads" : 4, "Socket": "LGA 2066", "Soporta Memoria": "DDR4-2666", "Consumo": "112W", "Generación": "7Gen"}, "destacado": false},
-    { "identificador": "Intel_CPU_4", "nombre": "Intel Core i3-7350K", "precio": 299, "categoria": "CPU", "especificaciones": {"Cores" : 2, "Threads" : 4, "Socket": "LGA 2066", "Soporta Memoria": "DDR4-2133", "Consumo": "130W", "Generación": "7Gen"}, "destacado": false},
-    { "identificador": "Intel_CPU_5", "nombre": "Intel Core i9-9900K", "precio": 379, "categoria": "CPU", "especificaciones": {"Cores": 8, "Threads" : 16, "Socket": "LGA 1151", "Soporta Memoria": "DDR4-2666", "Consumo": "95W", "Generación": "9Gen"}, "destacado": true},
-    { "identificador": "Intel_CPU_6", "nombre": "Intel Core i7-9700K", "precio": 299, "categoria": "CPU", "especificaciones": {"Cores": 8, "Threads" : 8, "Socket": "LGA 1151", "Soporta Memoria": "DDR4-2666", "Consumo": "95W", "Generación": "9Gen"}, "destacado": false},
-    { "identificador": "Intel_CPU_7", "nombre": "Intel Core i5-9600K", "precio": 242, "categoria": "CPU", "especificaciones": {"Cores": 6, "Threads" : 6, "Socket": "LGA 1151", "Soporta Memoria": "DDR4-2666", "Consumo": "95W", "Generación": "9Gen"}, "destacado": false},
-    { "identificador": "Intel_CPU_8", "nombre": "Intel Core i3-9350KF", "precio": 219, "categoria": "CPU", "especificaciones": {"Cores": 4, "Threads" : 4, "Socket": "LGA 1151", "Soporta Memoria": "DDR4-2400", "Consumo": "130W", "Generación": "9Gen"}, "destacado": false},
-    { "identificador": "Intel_CPU_9", "nombre": "Intel Core i7-8700K", "precio": 305, "categoria": "CPU", "especificaciones": {"Cores": 6, "Threads" : 12, "Socket": "LGA 1151", "Soporta Memoria": "DDR4-2666", "Consumo": "130W", "Generación": "8Gen"}, "destacado": true},
-    { "identificador": "Intel_CPU_10", "nombre": "Intel Core i5-8600K", "precio": 290, "categoria": "CPU", "especificaciones": {"Cores": 6, "Threads" : 6, "Socket": "LGA 1151", "Soporta Memoria": "DDR4-2666", "Consumo": "130W", "Generación": "8Gen"}, "destacado": false},
-    { "identificador": "Intel_CPU_11", "nombre": "Intel Core i3-8350K", "precio": 290, "categoria": "CPU", "especificaciones": {"Cores": 4, "Threads" : 4, "Socket": "LGA 1151", "Soporta Memoria": "DDR4-2400", "Consumo": "130W", "Generación": "8Gen"}, "destacado": false},
-    { "identificador": "Intel_CPU_12", "nombre": "Intel Core i7-10700k", "precio": 426, "categoria": "CPU", "especificaciones": {"Cores": 8, "Threads" : 16, "Socket": "LGA 1200", "Soporta Memoria": "DDR4-2933", "Consumo": "95W", "Generación": "10Gen"}, "destacado": false},
-    
-    { "identificador": "Intel_MOBO_1", "nombre": "ASUS ROG Rampage VI Extreme Encore", "precio": 749, "categoria": "MOBO", "especificaciones": {"Chipset": "X299", "Socket": "LGA 2066", "Tamaño": "ATX"}, "destacado": false},
-    { "identificador": "Intel_MOBO_2", "nombre": "ASUS Prime X299-A II", "precio": 299, "categoria": "MOBO", "especificaciones": {"Chipset": "X299", "Socket": "LGA 2066", "Tamaño": "ATX"}, "destacado": true},
-    { "identificador": "Intel_MOBO_3", "nombre": "ASUS Prime X299 Edition 30", "precio": 749, "categoria": "MOBO", "especificaciones": {"Chipset": "X299", "Socket": "LGA 2066", "Tamaño": "ATX"}, "destacado": false},
-    { "identificador": "Intel_MOBO_4", "nombre": "ASUS Prime Z390M-PLUS", "precio": 241, "categoria": "MOBO", "especificaciones": {"Chipset": "Z390", "Socket": "LGA 1151", "Tamaño": "mATX"}, "destacado": false},
-    { "identificador": "Intel_MOBO_5", "nombre": "ASUS ROG MAXIMUS XI HERO", "precio": 289, "categoria": "MOBO", "especificaciones": {"Chipset": "Z390", "Socket": "LGA 1151", "Tamaño": "ATX"}, "destacado": true},
-    { "identificador": "Intel_MOBO_6", "nombre": "ASUS ROG Maximus XI Code", "precio": 385, "categoria": "MOBO", "especificaciones": {"Chipset": "Z390", "Socket": "LGA 1151", "Tamaño": "ATX"}, "destacado": false},
-    { "identificador": "Intel_MOBO_7", "nombre": "ASUS PRIME Z390-P", "precio": 121, "categoria": "MOBO", "especificaciones": {"Chipset": "Z390", "Socket": "LGA 1151", "Tamaño": "ATX"}, "destacado": false},
-    { "identificador": "Intel_MOBO_8", "nombre": "ASUS Prime Z370-P II", "precio": 114, "categoria": "MOBO", "especificaciones": {"Chipset": "Z370", "Socket": "LGA 1151", "Tamaño": "ATX"}, "destacado": false},
-    { "identificador": "Intel_MOBO_9", "nombre": "ASUS ROG STRIX Z390-E GAMING", "precio": 199, "categoria": "MOBO", "especificaciones": {"Chipset": "Z390", "Socket": "LGA 1151", "Tamaño": "ATX"}, "destacado": true},
-    { "identificador": "Intel_MOBO_10", "nombre": "ASUS ROG STRIX H370-I GAMING", "precio": 184, "categoria": "MOBO", "especificaciones": {"Chipset": "H370", "Socket": "LGA 1151", "Tamaño": "mITX"}, "destacado": false},
-    { "identificador": "Intel_MOBO_11", "nombre": "ASUS ROG Maximus X Formula", "precio": 455, "categoria": "MOBO", "especificaciones": {"Chipset": "Z370", "Socket": "LGA 1151", "Tamaño": "ATX"}, "destacado": false},
-    { "identificador": "Intel_MOBO_12", "nombre": "ASUS ROG STRIX Z370-I GAMING", "precio": 199, "categoria": "MOBO", "especificaciones": {"Chipset": "Z370", "Socket": "LGA 1151", "Tamaño": "mATX"}, "destacado": true},
+var productos_data = []
 
-    {
-        "identificador": "AMD_GPU_1",
-        "nombre": "AMD Radeon RX 550",
-        "precio": 97, 
-        "categoria": "GPU",
-        "especificaciones": {"Memory": "4GB", "Memory type": "DDR4", "Card Profile": "Single"}, 
-        "destacado": false
-    },
-    {"identificador": "GPU_2", "nombre": "MD Radeon RX 570 RS", "precio": 220, "categoria": "GPU", "especificaciones": {"Memory": "8GB", "Memory type": "DDR5", "Card Profile": "Dual"}, "destacado": true},
-    {"identificador": "GPU_3", "nombre": "Phantom Gaming D Radeon RX580", "precio": 239, "categoria": "GPU", "especificaciones": {"Memory": "8GB", "Memory type": "DDR5", "Card Profile": "Dual"}, "destacado": false},
-    {"identificador": "GPU_4", "nombre": "XFX AMD Radeon RX 5700 XT", "precio": 461, "categoria": "GPU", "especificaciones": {"Memory": "8GB", "Memory type": "DDR6", "Card Profile": "Triple"}, "destacado": true},
-
-    {"identificador": "GPU_5", "nombre": "MSI GeForce GTX 1650 Super Gaming X", "precio": 169, "categoria": "GPU", "especificaciones": {"Memory": "4GB", "Memory type": "DDR6", "Card Profile": "Dual"}, "destacado": true},
-    {"identificador": "GPU_6", "nombre": "MSI GeForce RTX 2070 SUPER", "precio": 550, "categoria": "GPU", "especificaciones": {"Memory": "8GB", "Memory type": "DDR6", "Card Profile": "Dual"}, "destacado": false},
-    {"identificador": "GPU_7", "nombre": "MSI GeForce RTX 3080 GAMING X TRIO", "precio": 699, "categoria": "GPU", "especificaciones": {"Memory": "10GB", "Memory type": "DDR6", "Card Profile": "Triple"}, "destacado": true},
-]
+$.ajax({
+    url: "data/productos.json",
+    dataType: "json",
+    success: function (response) {
+        console.log(response);
+        for (const iterator of response) {
+            productos_data.push(iterator)
+        }
+    }
+});

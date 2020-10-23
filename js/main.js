@@ -1,8 +1,8 @@
-                // ------------------------------------------//
-                // ---------------- ESTRUCURA ---------------//
-                // ---------------- BÁSICA DE ---------------//
-                // ----------------- OBJETO -----------------//
-                // ------------------------------------------//
+// ------------------------------------------//
+// ---------------- ESTRUCURA ---------------//
+// ---------------- BÁSICA DE ---------------//
+// ----------------- OBJETO -----------------//
+// ------------------------------------------//
 class TodosLosProductos {
     constructor(identificador, nombre, precio, categoria, especificaciones, destacado) {
         this.identificador = identificador;
@@ -198,7 +198,7 @@ $(() => {
                 // ------------- PRODUCTOS --------------//
                 // ------------ AL CARRITO --------------//
                 // --------------------------------------//
-    $('.carritoInner').prepend(noHayProductos)
+    $('.carritoInner').prepend(noHayProductos);
     $('.grid-container').on('click', '.unProducto a.agregar', function(e){
         e.stopPropagation();
         $('.carritoInner p.noHayProductos').remove()
@@ -397,5 +397,4 @@ let botonCerrarToast = () => {
         }, 1000)
     });
 }
-
 
