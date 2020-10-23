@@ -36,7 +36,7 @@ let carrito = $(
         '<p class="precioTotal">Total: ' +
             '<span id="precioTotal">0</span>' +
         '</p>' + 
-        '<a class="comprar btn btn-primary hidden">Ir al carrito</a>' +
+        '<a class="comprar btn btn-primary hidden">Comprar</a>' +
     '</div>'
 );
 let noHayProductos = $('<p class="noHayProductos">Agregá productos a tu Carrito!</p>');
@@ -85,11 +85,10 @@ let precioRango = $(
         '<input class="btn btn-primary" type="submit" value="Aplicar">' +
     '</div>'
 );
+
 //DOCUMENT READY FUNCTION
-$(() => {
-
-    
-
+$( () => {
+    console.log(status);
     $('section').append(grid_container)
     $('.grid-container').append(aside)
     $('.grid-container').append(grid);
@@ -97,14 +96,14 @@ $(() => {
                 // --------------------------------------------//
                 // ------------- Mostrar destacados -----------//
                 // --------------------------------------------//
-    for (const iterator of productos_data) {
-        productos.push(new TodosLosProductos(iterator.identificador, iterator.nombre, iterator.precio, iterator.categoria, iterator.especificaciones))
-        if (iterator.destacado === true) {
-            crearEstructura(iterator, $('.grid'));
+    $.when( dolarAjaxCall() , productosAjaxCall()).done( (status) => {
+        for (const iterator of productos_data) {
+            productos.push(new TodosLosProductos(iterator.identificador, iterator.nombre, iterator.precio, iterator.categoria, iterator.especificaciones))
+            if (iterator.destacado === true) crearEstructura(iterator, $('.grid'));
         };
-
-    };
-    $('.grid-container').prepend('<h3 class="col-md-12">Productos destacados</h3>');
+        $('.grid-container').prepend('<h3 class="col-md-12">Productos destacados</h3>');
+    })
+    
 
 
                 // ---------------------------------------------//
@@ -307,18 +306,29 @@ $(() => {
         e.stopPropagation();
     })
 
-
 });
 
                 // ------------------------------------------//
                 // ---------------- FUNCIONES ---------------//
                 // ------------------------------------------//
-
+let dolarOficial = () => {
+    for (const dolares of dolar_Json) {
+        let tipoDeDolar = dolares.casa.nombre
+        let valorDeDolar = dolares.casa.venta
+        if (tipoDeDolar === 'Dolar Oficial') {
+            let valorDeDolarOficial = parseInt(valorDeDolar)
+            return valorDeDolarOficial
+    }
+        //console.log(producto.precio * iterator.casa.value)
+        //return iterator.casa.nombre
+    }
+}
 //CREA UNA ESTRUCTURA BÁSICA DE UN PRODUCTO, LOS PARAMETROS SON
 //• EL LUGAR DONDE VA A SER INSERTADA
 //• EL NOMBRE DEL PRODUCTO
 //• EL PRECIO
 let crearEstructura =  (producto, donde) => {
+    let precioEnPesos = dolarOficial() * producto.precio
     //TOMAMOS EL NOMBRE Y LE SACAMOS LOS ESPACIOS PARA USARLO EN EL SRC DE LA FOTO
     let nombreParaFoto = producto.nombre.replaceAll(' ', '_')
     //ESTRUCTURA BASICA DE PRODUCTO
@@ -328,7 +338,7 @@ let crearEstructura =  (producto, donde) => {
             '<img class="imgResponsive" src="img/productos/' + nombreParaFoto + '.jpg" >' +
             '<div class="d-flex justify-content-between align-items-center">' +
                 '<a class="btn btn-primary agregar">Agregar</a>' +
-                '<p class="precio">' + producto.precio + '</p>' +
+                '<p class="precio">' + precioEnPesos + '</p>' +
             '</div>' +
         '</div>'
     );
@@ -339,9 +349,7 @@ let crearEstructura =  (producto, donde) => {
             $(this).addClass('faded').dequeue();
         });
     }); */
-    
-    
-    
+
 }
 
 //CREA UNA NUEVA NOTIFICACIÓN CADA VEZ QUE EL USUARIO AGREGA UN PRODUCTO AL CARRITO
@@ -365,16 +373,19 @@ let crearToast = (nombre, precio, clase, texto) => {
     //$(nuevoToast).hide().appendTo('.toastContainer').slideDown()
     $('.toastContainer').append(nuevoToast);
     //LAS NOTIFICACIONES DESAPARECEN LUEGO DE 6 SEGUNDOS
-    setTimeout(function(){ 
+    setTimeout(()=>{ 
         $(nuevoToast).addClass('hide');
-        setTimeout(function(){
+        setTimeout(()=>{
             $(nuevoToast).remove()
         }, 1000);
     }, 5000);
 }
 
 
+
 let crearProductoEnCarrito = (donde, nombre, precio, imagen) => {
+    
+    
     let nuevoProductoEnCarrito = $(
         '<div class="d-flex flex-row carrito-item justify-content-between">' +
             '<img src="img/productos/' + imagen + '.jpg" >' +
@@ -398,3 +409,5 @@ let botonCerrarToast = () => {
     });
 }
 
+
+    
