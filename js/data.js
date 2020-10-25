@@ -1,8 +1,15 @@
+                // ------------------------------------------//
+                // ---------------- CARGA -------------------//
+                // ------------------ DE --------------------//
+                // --------------- PRODUCTOS ----------------//
+                // ------------------------------------------//
+
 var productos_data = []
 
 let productosAjaxCall = () => {
     return $.ajax({
         type: 'GET',
+        //ANTES DE ENVIAR LE SACAMOS LA CLASE HIDDEN A LA ANIMACION DE CARGA
         beforeSend: function () { 
             $('#loader').removeClass('hidden')
         },
@@ -14,6 +21,7 @@ let productosAjaxCall = () => {
             }
         },
         complete: function () { 
+            //SE LE AGREGA UN POCO DE RETRASO PARA QUE SE VEA LA ANIMACIÓN
             setTimeout(()=>{
                 $('#loader').addClass('hidden')
             }, 300)
@@ -39,7 +47,6 @@ let dolarAjaxCall = () => {
         dataType: "json",
         success: function (response) {
             for (const iterator of response) {
-                //console.log('cargo')
                 dolar_Json.push(iterator)
             }
         },
