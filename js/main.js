@@ -85,26 +85,30 @@ let precioRango = $(
         '<input class="btn btn-primary" type="submit" value="Aplicar">' +
     '</div>'
 );
+let cargandoAnimacion = $(
+    '<div id="loader" class="lds-dual-ring col-md-10 hidden"></div>'
+)
 
 //DOCUMENT READY FUNCTION
 $( () => {
-    console.log(status);
     $('section').append(grid_container)
     $('.grid-container').append(aside)
+    $('.grid-container').append(cargandoAnimacion)
     $('.grid-container').append(grid);
     $('.carrito').append(carrito)
                 // --------------------------------------------//
                 // ------------- Mostrar destacados -----------//
                 // --------------------------------------------//
-    $.when( dolarAjaxCall() , productosAjaxCall()).done( (status) => {
+    $.when( dolarAjaxCall() , productosAjaxCall() ).done( (status) => {
         for (const iterator of productos_data) {
             productos.push(new TodosLosProductos(iterator.identificador, iterator.nombre, iterator.precio, iterator.categoria, iterator.especificaciones))
-            if (iterator.destacado === true) crearEstructura(iterator, $('.grid'));
+            setTimeout(()=>{
+                if (iterator.destacado === true) crearEstructura(iterator, $('.grid'));
+            }, 200)
+            
         };
         $('.grid-container').prepend('<h3 class="col-md-12">Productos destacados</h3>');
     })
-    
-
 
                 // ---------------------------------------------//
                 // ---------------- FILTRO POR -----------------//
@@ -233,7 +237,6 @@ $( () => {
         let totalString = $('span#precioTotal')[0].innerHTML
         var total = parseInt(totalString)
         let precioN = parseInt(precio)
-        //console.log(total);
         var total = total + precioN
         $('span#precioTotal')[0].textContent = total
     });
@@ -268,10 +271,6 @@ $( () => {
         let totalString = $('span#precioTotal')[0].innerHTML
         var total = parseInt(totalString)
         let precioN = parseInt(precio)
-        //var total = total - precioN
-/*         console.log(precioN);
-        console.log(total - precioN);
-        console.log(totalString); */
         $('span#precioTotal')[0].textContent = total - precioN;
         $('a.comprar').addClass('hidden');
         
@@ -318,9 +317,7 @@ let dolarOficial = () => {
         if (tipoDeDolar === 'Dolar Oficial') {
             let valorDeDolarOficial = parseInt(valorDeDolar)
             return valorDeDolarOficial
-    }
-        //console.log(producto.precio * iterator.casa.value)
-        //return iterator.casa.nombre
+        }
     }
 }
 //CREA UNA ESTRUCTURA BÁSICA DE UN PRODUCTO, LOS PARAMETROS SON
@@ -343,13 +340,6 @@ let crearEstructura =  (producto, donde) => {
         '</div>'
     );
     $(donde).append(estructuraBasica);
-    //
-    /* $('.unProducto').each(function(i, el) { 
-        $(el).delay(100*i).queue(function() {
-            $(this).addClass('faded').dequeue();
-        });
-    }); */
-
 }
 
 //CREA UNA NUEVA NOTIFICACIÓN CADA VEZ QUE EL USUARIO AGREGA UN PRODUCTO AL CARRITO

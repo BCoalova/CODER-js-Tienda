@@ -311,10 +311,40 @@ aside {
     
 }
 
-/* .fadeIn {
-    opacity: 0;
-    transition: all 1s ease-in-out;
-    &.faded {
-        opacity: 1;
+.lds-dual-ring {
+    display: flex;
+    align-items: center;
+}
+.lds-dual-ring.hidden {
+    display: none;
+}
+.lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 164px;
+    height: 164px;
+    margin: 5% auto;
+    border-radius: 50%;
+    border: 6px solid rgb(0,0,0);
+    border-color: rgb(0,0,0) transparent rgb(0,0,0) transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
     }
-} */
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,.8);
+    z-index: 999;
+    opacity: 1;
+    transition: all 0.5s;
+}
