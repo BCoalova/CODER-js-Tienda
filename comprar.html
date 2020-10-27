@@ -26,13 +26,77 @@
         </nav>
         
     </header>
-    <section class="container d-flex justify-content-center align-items-center flex-column">
-        <div class="comprar">
-            
-        </div>
-
-
-        <div class="toastContainer">
+    <section class="container">
+        <div class="d-flex justify-content-center align-items-center finalizarCompra row">
+            <h1 class="col-md-12">Finalizá tu compra</h1>
+            <div class="productos_finalizarCompra col-md-5">
+                <div class="producto_finalizarCompra">
+                    <img src="" alt="">
+                    <p>un producto</p>
+                </div>
+                <div class="total">
+                    <p>Total</p>
+                </div>
+            </div>
+            <div class="datosPersonales_finalizarCompra col-md-7">
+                <h3>Datos Personales</h3>
+                <form action="">
+                    <div class="form-group">
+                        <label for="">Nombre</label>
+                        <input class="form-control"  type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Email</label>
+                        <input class="form-control"  type="email">
+                    </div>
+                    <div class="form-group d-flex flex-row flex-wrap telefono">
+                        <label class="w-100" for="" >Telefono</label>
+                        <input class="form-control col-xs-1 col-md-2"  type="text" placeholder="011">
+                        <input class="form-control col-xs-11 col-md-10"  type="text" placeholder="53441515">
+                    </div>
+                    <div class="form-group cuotas">
+                        <select class="form-control" name="" id="">
+                            <option value="">1 cuota</option>
+                            <option value="">3 cuotas</option>
+                            <option value="">6 cuotas</option>
+                            <option value="">12 cuotas</option>
+                        </select>
+                    </div>
+                    <h3>Datos de la tarjeta de Credito</h3>
+                    <div class="tarjeta_finalizarCompra">
+                        <div class="row justify-content-between">
+                            <div class="col-md-12">
+                                <img src="img/credit_card.svg">
+                            </div>
+                            <div class="col-md-7 izquierda_tarjeta">
+                                <label for="">Número de tarjeta</label>
+                                <input class="numeroDeTarjeta" type="text" name="" id="" placeholder="0000 - 0000 - 0000 - 0000">
+                                <label for="">Nombre</label>
+                                <input type="text" name="" id="" placeholder="PEREZ JUAN">
+                                <label for="">cvc</label>
+                                <input type="text" name="" id="" placeholder="000">
+                            </div>
+                            <div class="col-md-4 derecha_tarjeta">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="">Desde</label>
+                                        <input type="text" name="" id="" placeholder="00/00">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="">Hasta</label>
+                                        <input type="text" name="" id="" placeholder="00/00">
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-primary" type="button" value="Confirmar compra">
+                    </div>
+                </form>
+            </div>
         </div>
     </section>
     

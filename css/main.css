@@ -35,12 +35,14 @@ a:not([href]) {
 
 .bootstrapOverwrites .navbar {
   background-color: #92c800 !important;
+  padding: 0rem 1rem .5rem 1rem;
 }
 
 .bootstrapOverwrites .navbar a.navbar-brand {
   color: #fff;
   font-size: 2rem;
   text-transform: uppercase;
+  margin-top: 1rem;
 }
 
 .bootstrapOverwrites .navbar form {
@@ -186,11 +188,11 @@ form.form-inline input.form-control {
 }
 
 .toastContainer .toast {
-  padding: 1.2rem;
+  padding: .8rem;
   opacity: 1;
   min-width: 20rem;
-  min-width: 35rem;
-  height: 142.17px;
+  min-width: 22rem;
+  max-height: 142.17px;
   font-size: 1rem;
   color: #21232a;
   margin-bottom: 1rem;
@@ -221,6 +223,14 @@ form.form-inline input.form-control {
 .toastContainer .toast .toastInner p:first-child {
   margin-bottom: .8rem;
   border-bottom: 1px #21232a solid;
+}
+
+.toastContainer .toast .toastInner p:nth-child(2) {
+  font-size: .9rem;
+}
+
+.toastContainer .toast .toastInner p:last-child {
+  font-size: .8rem;
 }
 
 .toastContainer .toast .toastInner p:last-child:before {
@@ -337,7 +347,7 @@ form.form-inline input.form-control {
   -webkit-transform: translateX(0);
           transform: translateX(0);
   position: fixed;
-  top: 89.22px;
+  top: 82px;
   right: 0;
   height: 100%;
   -webkit-transition: all .3s ease-in-out;
@@ -531,5 +541,148 @@ aside .precioRange input#rangeSlider_inversed[type='range']::-webkit-slider-thum
   opacity: 1;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
+}
+
+.productoEnFinalizar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.productoEnFinalizar img {
+  width: 100px;
+}
+
+.finalizarCompra {
+  background-color: white;
+  padding: 2.5rem;
+}
+
+.finalizarCompra .productos_finalizarCompra {
+  margin-top: 1rem;
+}
+
+.finalizarCompra .productos_finalizarCompra .producto_finalizarCompra {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.finalizarCompra .productos_finalizarCompra .producto_finalizarCompra img {
+  width: 60px;
+}
+
+.finalizarCompra .productos_finalizarCompra .producto_finalizarCompra p:nth-child(2) {
+  text-align: center;
+}
+
+.finalizarCompra .productos_finalizarCompra .producto_finalizarCompra p:last-child:before {
+  content: '$';
+}
+
+.finalizarCompra .productos_finalizarCompra .total {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.finalizarCompra .productos_finalizarCompra .total p:last-child:before {
+  content: '$';
+}
+
+.finalizarCompra h1 {
+  text-align: center;
+  padding-top: 1rem;
+  border-bottom: 1px solid #21232a;
+  margin-bottom: 2rem;
+}
+
+.finalizarCompra .datosPersonales_finalizarCompra .tarjeta_finalizarCompra {
+  padding: 22px;
+  background-color: #C4C4C4;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+
+.finalizarCompra .datosPersonales_finalizarCompra .tarjeta_finalizarCompra img {
+  width: 54px;
+  margin-bottom: 1rem;
+}
+
+.finalizarCompra .datosPersonales_finalizarCompra .tarjeta_finalizarCompra label {
+  margin-bottom: 2px;
+}
+
+.finalizarCompra .datosPersonales_finalizarCompra .tarjeta_finalizarCompra input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #21232a;
+  background: #C4C4C4;
+  margin-bottom: 1rem;
+}
+
+.finalizarCompra .datosPersonales_finalizarCompra .tarjeta_finalizarCompra input:focus {
+  outline: none;
+  border-bottom: 1px solid #0EB1D2;
+}
+
+.finalizarCompra .datosPersonales_finalizarCompra .tarjeta_finalizarCompra .izquierda_tarjeta {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.finalizarCompra .datosPersonales_finalizarCompra .tarjeta_finalizarCompra .izquierda_tarjeta input {
+  font-size: 22px;
+}
+
+.finalizarCompra .datosPersonales_finalizarCompra .tarjeta_finalizarCompra .izquierda_tarjeta input:last-child {
+  width: 15%;
+}
+
+.finalizarCompra .datosPersonales_finalizarCompra .tarjeta_finalizarCompra .derecha_tarjeta {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.finalizarCompra .datosPersonales_finalizarCompra .tarjeta_finalizarCompra .derecha_tarjeta input {
+  width: 80%;
 }
 /*# sourceMappingURL=main.css.map */

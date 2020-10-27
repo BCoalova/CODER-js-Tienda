@@ -76,11 +76,11 @@ form.form-inline {
     right: 1.5rem;
     z-index: 1031;
     .toast {
-        padding: 1.2rem;
+        padding: .8rem;
         opacity: 1;
         min-width: 20rem;
-        min-width: 35rem;
-        height: 142.17px;
+        min-width: 22rem;
+        max-height: 142.17px;
         font-size: 1rem;
         color: $negro;
         margin-bottom: 1rem;
@@ -104,7 +104,11 @@ form.form-inline {
                     margin-bottom: .8rem;
                     border-bottom: 1px $negro solid;
                 }
+                &:nth-child(2) {
+                    font-size: .9rem;
+                }
                 &:last-child {
+                    font-size: .8rem;
                     &:before {
                         content: '$ '
                     }
@@ -193,7 +197,7 @@ form.form-inline {
 .carritoInner {
     transform: translateX(0);
     position: fixed;
-    top: 89.22px;
+    top: 82px;
     right: 0;
     height: 100%;
     transition: all .3s ease-in-out;
@@ -347,4 +351,101 @@ aside {
     z-index: 999;
     opacity: 1;
     transition: all 0.5s;
+}
+
+.productoEnFinalizar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    img {
+        width: 100px;
+    }
+}
+
+.finalizarCompra {
+    background-color: white;
+    padding: 2.5rem;
+    .productos_finalizarCompra {
+        margin-top: 1rem;
+        .producto_finalizarCompra {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            img {
+                width: 60px;
+            }
+            p:nth-child(2) {
+                text-align: center;
+            }
+            p:last-child {
+                &:before {
+                    content: '$'
+                }
+            }
+        }
+        .total {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            p:last-child {
+                &:before {
+                    content: '$'
+                }
+            }
+        }
+    }
+    h1 {
+        text-align: center;
+        padding-top: 1rem;
+        border-bottom: 1px solid $negro;
+        margin-bottom: 2rem;
+    }
+    .datosPersonales_finalizarCompra {
+        .tarjeta_finalizarCompra {
+            padding:22px;
+            background-color: #C4C4C4;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            img {
+                width: 54px;
+                margin-bottom: 1rem;
+            }
+            label {
+                margin-bottom: 2px;
+            }
+            input {
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                border-bottom: 1px solid $negro;
+                background: #C4C4C4;
+                margin-bottom: 1rem;
+                &:focus {
+                    outline: none;
+                    border-bottom: 1px solid $azul;
+                }
+            }
+            .izquierda_tarjeta {
+                display: flex;
+                flex-direction: column;
+                input {
+                    font-size: 22px;
+                }
+                
+                input:last-child {
+                    width: 15%;
+                }
+            }
+            .derecha_tarjeta {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                input {
+                    width: 80%;
+                }
+            }
+        }
+    }
+    
 }

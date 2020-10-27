@@ -22,9 +22,7 @@ let productosAjaxCall = () => {
         },
         complete: function () { 
             //SE LE AGREGA UN POCO DE RETRASO PARA QUE SE VEA LA ANIMACIÓN
-            setTimeout(()=>{
-                $('#loader').addClass('hidden')
-            }, 300)
+            $('#loader').addClass('hidden')
             
         },
     });

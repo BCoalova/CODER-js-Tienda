@@ -19,6 +19,7 @@ class TodosLosProductos {
                 // --------------------------------------------//
 var cero = 0;
 let productos = [];
+let productosComprados = [];
 var total = 0
                 // --------------------------------------------//
                 // ---------------- VARIABLES DE --------------//
@@ -36,7 +37,7 @@ let carrito = $(
         '<p class="precioTotal">Total: ' +
             '<span id="precioTotal">0</span>' +
         '</p>' + 
-        '<a class="comprar btn btn-primary hidden">Comprar</a>' +
+        '<a href="#/FinalizaCompra" class="comprar btn btn-primary hidden">Comprar</a>' +
     '</div>'
 );
 let noHayProductos = $('<p class="noHayProductos">Agregá productos a tu Carrito!</p>');
@@ -87,6 +88,75 @@ let precioRango = $(
 );
 let cargandoAnimacion = $(
     '<div id="loader" class="lds-dual-ring col-md-10 hidden"></div>'
+);
+
+let finalizarCompraPage = $(
+    '<div class="d-flex justify-content-between finalizarCompra row">' +
+        '<h1 class="col-md-12">Finalizá tu compra</h1>' +
+        '<div class="productos_finalizarCompra col-md-4">' +
+            '<div class="total">' +
+                '<p>Total</p>' +
+            '</div>' +
+        '</div>' +
+        '<div class="datosPersonales_finalizarCompra col-md-7">' +
+            '<h3>Datos Personales</h3>'+
+            '<form action="">' +
+                '<div class="form-group">'+
+                    '<label for="">Nombre</label>'+
+                    '<input class="form-control"  type="text" required>'+
+                '</div>'+
+                '<div class="form-group">'+
+                    '<label for="">Email</label>'+
+                    '<input class="form-control"  type="email" required>'+
+                '</div>'+
+                '<div class="form-group d-flex flex-row justify-content-between flex-wrap telefono">'+
+                    '<label class="w-100" for="" >Telefono</label>'+
+                    '<input class="form-control col-xs-1 col-md-2"  type="text" placeholder="011" required>'+
+                    '<input class="form-control col-xs-11 col-md-9"  type="text" placeholder="53441515" required>'+
+                '</div>'+
+                '<div class="form-group cuotas">'+
+                    '<label for="">Cantidad de Cuotas</label>' +
+                    '<select class="form-control" name="" id="">'+
+                        '<option value=""></option>'+
+                        '<option value=""></option>'+
+                        '<option value=""></option>'+
+                        '<option value=""></option>'+
+                    '</select>'+
+                '</div>'+
+                '<h3>Datos de la tarjeta de Credito</h3>'+
+                '<div class="tarjeta_finalizarCompra">'+
+                    '<div class="row justify-content-between">'+
+                        '<div class="col-md-12">'+
+                            '<img src="img/credit_card.svg">'+
+                        '</div>'+
+                        '<div class="col-md-7 izquierda_tarjeta">'+
+                            '<label for="">Número de tarjeta</label>'+
+                            '<input class="numeroDeTarjeta" type="text" name="" id="" placeholder="0000 - 0000 - 0000 - 0000">'+
+                            '<label for="">Nombre</label>'+
+                            '<input type="text" name="" id="" placeholder="PEREZ JUAN">'+
+                            '<label for="">cvc</label>'+
+                            '<input type="text" name="" id="" placeholder="000">'+
+                        '</div>'+
+                        '<div class="col-md-4 derecha_tarjeta">'+
+                            '<div class="row">'+
+                                '<div class="col-md-6">'+
+                                    '<label for="">Desde</label>'+
+                                    '<input type="text" name="" id="" placeholder="00/00">'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                    '<label for="">Hasta</label>'+
+                                    '<input type="text" name="" id="" placeholder="00/00">'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="form-group">'+
+                    '<input class="btn btn-primary" type="button" value="Confirmar compra">'+
+                '</div>'+
+            '</form>'+
+        '</div>' +
+    '</div>'
 )
 
 //DOCUMENT READY FUNCTION
@@ -102,10 +172,7 @@ $( () => {
     $.when( dolarAjaxCall() , productosAjaxCall() ).done( (status) => {
         for (const iterator of productos_data) {
             productos.push(new TodosLosProductos(iterator.identificador, iterator.nombre, iterator.precio, iterator.categoria, iterator.especificaciones))
-            setTimeout(()=>{
-                if (iterator.destacado === true) crearEstructura(iterator, $('.grid'));
-            }, 200)
-            
+            if (iterator.destacado === true) crearEstructura(iterator, $('.grid'));
         };
         $('.grid-container').prepend('<h3 class="col-md-12">Productos destacados</h3>');
     })
@@ -211,6 +278,8 @@ $( () => {
         let precio = e.currentTarget.nextSibling.innerHTML
         //NOMBRE EN EL PRODUCTO
         let nombre = e.currentTarget.parentElement.parentElement.firstChild.innerHTML
+        let productoDiv = e.currentTarget.parentElement.parentElement
+        let productoId = $(productoDiv).attr('class').replaceAll('unProducto fadeIn ', '')
         //CREAMOS LA NOTIFICACIÓN
         crearToast(nombre, precio, 'agregado', 'agregado al')
         //EVENTO PARA CERRAR LA NOTIFICACIÓN CON EL BOTON CERRAR EN LA MISMA
@@ -230,7 +299,7 @@ $( () => {
         //ESPACIO POR _
         let productoImagen = nombre.replaceAll(' ', '_')
         //CREAMOS EL PRODUCTO EN EL CARRITO
-        crearProductoEnCarrito(carrito, nombre, precio, productoImagen)
+        crearProductoEnCarrito(carrito, nombre, precio, productoImagen, productoId)
         //MOSTRAR BOTÓN COMPRAR
         $('a.comprar').removeClass('hidden')
         //MOSTRAR TOTAL EN CARRITO
@@ -264,6 +333,7 @@ $( () => {
         if (cero === 0) {
             $(contador).removeClass('mostrar');
             $('.carritoInner').prepend(noHayProductos)
+            $('a.comprar').addClass('hidden');
         }
 
         crearToast(nombre, precio, 'removido', 'removido del')
@@ -272,8 +342,6 @@ $( () => {
         var total = parseInt(totalString)
         let precioN = parseInt(precio)
         $('span#precioTotal')[0].textContent = total - precioN;
-        $('a.comprar').addClass('hidden');
-        
     });
     
 
@@ -285,7 +353,6 @@ $( () => {
 
     $('.carrito').on('click', 'svg', (e) => { 
         $('.carritoInner').toggleClass('noMostrar');
-        //
         $('#carrito').toggleClass('abierto')
         e.stopPropagation();
     });
@@ -303,6 +370,49 @@ $( () => {
             $('#carrito').toggleClass('abierto')
         }
         e.stopPropagation();
+    })
+
+                // --------------------------------------//
+                // --------------- BOTÓN ----------------//
+                // ---------------- PARA ----------------//
+                // --------------- COMPRAR --------------//
+                // --------------------------------------//
+    $('a.comprar').click((e)=> {
+        cero = 0
+        $('#contador').removeClass('mostrar')
+        $('.carrito').hide()
+        $('section').html('')
+        $('section').removeClass();
+        $('section').addClass('container');
+        $('.carritoInner').remove()
+        $('section').append(finalizarCompraPage)
+        let productosEnCarrito = e.target.parentNode.children;
+        for (const iterator of productosEnCarrito) {
+            cero++
+            if ($(iterator).hasClass('carrito-item')) {
+                idEnCarrito = iterator.id
+                for (const productos of productos_data) {
+                    if (idEnCarrito === productos.identificador) {
+                        productosComprados.push(productos)
+                        sessionStorage.setItem('productoComprado_' + cero, JSON.stringify({productos}))
+                    }
+                }
+            }
+        }
+        cero = 0
+        precios = []
+        for (const iterator of productosComprados) {
+            cero++
+            let preciosAPushear = iterator.precio * parseInt(dolarOficial())
+            precios.push(preciosAPushear)
+            productosEnFinalizarCompra(iterator, $('.productos_finalizarCompra'))
+        }
+        let precioTotal = precios.reduce((a, b) => a + b, 0);
+        $('.total').append('<p>'+precioTotal+'</p>')
+        let optionsCuotas = [ 1, 3, 6, 12 ];
+        for (var i = 0; i < optionsCuotas.length; i++) {
+            funcionCuotas(precioTotal, i, optionsCuotas[i])
+        }
     })
 
 });
@@ -371,13 +481,9 @@ let crearToast = (nombre, precio, clase, texto) => {
     }, 5000);
 }
 
-
-
-let crearProductoEnCarrito = (donde, nombre, precio, imagen) => {
-    
-    
+let crearProductoEnCarrito = (donde, nombre, precio, imagen, productoId) => {
     let nuevoProductoEnCarrito = $(
-        '<div class="d-flex flex-row carrito-item justify-content-between">' +
+        '<div id="' + productoId + '" class="d-flex flex-row carrito-item justify-content-between">' +
             '<img src="img/productos/' + imagen + '.jpg" >' +
             '<div>' +
                 '<p class="carritoNombre">' + nombre + '</p>' +
@@ -387,7 +493,7 @@ let crearProductoEnCarrito = (donde, nombre, precio, imagen) => {
         '</div>'
     ).fadeIn(3000);
     $(donde).prepend(nuevoProductoEnCarrito);
-}
+};
 
 let botonCerrarToast = () => {
     $('.toast a').click(function (e) { 
@@ -397,7 +503,26 @@ let botonCerrarToast = () => {
             $(e.target.parentElement.parentElement).remove()
         }, 1000)
     });
-}
+};
 
+let productosEnFinalizarCompra = (producto, donde) => {
+    let imagen = producto.nombre.replaceAll(' ', '_')
+    let precioEnPesos = parseInt(producto.precio) * parseInt(dolarOficial())
+    let productoDiv = $(
+        '<div class="producto_finalizarCompra">' + 
+            '<img src="img/productos/' + imagen + '.jpg" alt="">' +
+            '<p>' + producto.nombre + '</p>' +
+            '<p>' + precioEnPesos + '</p>' +
+        '</div>' +
+        '<hr>'
+    )
+    donde.prepend(productoDiv)
+};
 
-    
+let funcionCuotas = (precioTotal, indice, cantidadDeCuotas) => {
+    let precioTotalParaCuotas = precioTotal / cantidadDeCuotas;
+    let concatenacionHMLT = cantidadDeCuotas + ' Cuotas de $ ' +precioTotalParaCuotas.toFixed(2);
+    let concatenacionSelector = '.cuotas option:nth-child(' + ( indice + 1 ) + ')';
+    $(concatenacionSelector).html(concatenacionHMLT);
+};
+
