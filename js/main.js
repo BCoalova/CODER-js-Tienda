@@ -14,6 +14,18 @@ class TodosLosProductos {
     };
 };
 
+class CompraRealizada {
+    constructor(nombre, email, pretelefono, telefono, cuotas, productosComprados) {
+        this.nombre = nombre;
+        this.email = email;
+        this.pretelefono = pretelefono;
+        this.pretelefono = pretelefono;
+        this.telefono = telefono;
+        this.cuotas = cuotas;
+        this.productosComprados = productosComprados;
+    }
+}
+
                 // --------------------------------------------//
                 // ------------- VARIABLES GLOBALES -----------//
                 // --------------------------------------------//
@@ -28,135 +40,141 @@ var total = 0
                 // --------------------------------------------//
 let grid = $('<div class="grid col-md-10"></div>')
 let grid_container = $('<div class="grid-container row d-flex"></div>')
-let aside = $(
-    '<aside class="col-md-2 d-flex flex-column">' +
-    '</aside>'
+let aside = $(`
+        <aside class="col-md-2 d-flex flex-column">
+        </aside>
+    `
 );
-let carrito = $(
-    '<div class="carritoInner noMostrar">'+
-        '<p class="precioTotal">Total: ' +
-            '<span id="precioTotal">0</span>' +
-        '</p>' + 
-        '<a href="#/FinalizaCompra" class="comprar btn btn-primary hidden">Comprar</a>' +
-    '</div>'
+let carrito = $(`
+        <div class="carritoInner noMostrar">
+        <p class="precioTotal">Total: 
+            <span id="precioTotal">0</span>
+        </p>
+        <a href="#/FinalizaCompra" class="comprar btn btn-primary hidden">Comprar</a>
+        </div>
+    `
+    
 );
 let noHayProductos = $('<p class="noHayProductos">Agregá productos a tu Carrito!</p>');
                 // --------------------------------------------//
                 // --------------- Filtro estatico ------------//
                 // --------------------------------------------//
-let categoriasCheckbox = $(
-    '<hr>' +
-    '<div class="categorias">' +
-        '<p>Categorias:</p>' +
-        '<form onsubmit="return false" class="categoriasCheckbox">' +
-            '<div class="d-flex justify-content-between align-items-center">' +
-                '<input name="identificador" value="AMD_CPU" id="AMD_CPU" type="radio">' +
-                '<label for="AMD_CPU">CPU AMD</label>' +
-            '</div>' + 
-            '<div class="d-flex justify-content-between align-items-center">' +
-                '<input name="identificador" value="AMD_MOBO" id="AMD_MOBO" type="radio">' +
-                '<label for="AMD_MOBO">Mother AMD</label>' +
-            '</div>' + 
-            '<div class="d-flex justify-content-between align-items-center">'+ 
-                '<input name="identificador" value="Intel_CPU" id="Intel_CPU" type="radio">' +
-                '<label for="Intel_CPU">CPU Intel</label>' +
-            '</div>' +
-            '<div class="d-flex justify-content-between align-items-center">' +
-                '<input name="identificador" value="Intel_MOBO" id="Intel_MOBO" type="radio">' +
-                '<label for="Intel_MOBO">Mother Intel</label>' +
-            '</div>' + 
-            '<div class="d-flex justify-content-between align-items-center">' +
-                '<input name="identificador" value="GPU" id="GPU" type="radio">' +
-                '<label for="GPU">Tarjeta Gráfica</label>' +
-            '</div>' + 
-            '<input class="btn btn-primary" type="submit" value="Aplicar">' +
-        '</form>' +
-    '</div>'
+let categoriasCheckbox = $(`
+        <hr>
+        <div class="categorias">
+            <p>Categorias:</p>
+            <form onsubmit="return false" class="categoriasCheckbox">
+                <div class="d-flex justify-content-between align-items-center">
+                    <input name="identificador" value="AMD_CPU" id="AMD_CPU" type="radio">
+                    <label for="AMD_CPU">CPU AMD</label>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <input name="identificador" value="AMD_MOBO" id="AMD_MOBO" type="radio">
+                    <label for="AMD_MOBO">Mother AMD</label>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <input name="identificador" value="Intel_CPU" id="Intel_CPU" type="radio">
+                    <label for="Intel_CPU">CPU Intel</label>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <input name="identificador" value="Intel_MOBO" id="Intel_MOBO" type="radio">
+                    <label for="Intel_MOBO">Mother Intel</label>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <input name="identificador" value="GPU" id="GPU" type="radio">
+                    <label for="GPU">Tarjeta Gráfica</label>
+                </div>
+                <input class="btn btn-primary" type="submit" value="Aplicar">
+            </form>
+        </div>
+    `
 );
-let precioRango = $(
-    '<hr>' +
-    '<p>Rango de precio</p>' +
-    '<form onsubmit="return false" class="precioRange d-flex flex-column">'+
-        '<label for="rangeSlider_inversed">Mínimo:</label>' +
-        '<input id="rangeSlider_inversed" type="range" min="80" max="900" value="80"></input>' +
-        '<output>80</output>' +
-        '<label for="rangeSlider">Máximo:</label>' +
-        '<input id="rangeSlider" type="range" min="80" max="900" value="900"></input>' +
-        '<output>900</output>' +
-        '<input class="btn btn-primary" type="submit" value="Aplicar">' +
-    '</div>'
+let precioRango = $(`
+    <hr>
+    <p>Rango de precio</p>
+    <form onsubmit="return false" class="precioRange d-flex flex-column">
+        <label for="rangeSlider_inversed">Mínimo:</label>
+        <input id="rangeSlider_inversed" type="range" min="80" max="900" value="80"></input>
+        <output>80</output>
+        <label for="rangeSlider">Máximo:</label>
+        <input id="rangeSlider" type="range" min="80" max="900" value="900"></input>
+        <output>900</output>
+        <input class="btn btn-primary" type="submit" value="Aplicar">
+    </div>
+    `
 );
 let cargandoAnimacion = $(
     '<div id="loader" class="lds-dual-ring col-md-10 hidden"></div>'
 );
 
-let finalizarCompraPage = $(
-    '<div class="d-flex justify-content-between finalizarCompra row">' +
-        '<h1 class="col-md-12">Finalizá tu compra</h1>' +
-        '<div class="productos_finalizarCompra col-md-4">' +
-            '<div class="total">' +
-                '<p>Total</p>' +
-            '</div>' +
-        '</div>' +
-        '<div class="datosPersonales_finalizarCompra col-md-7">' +
-            '<h3>Datos Personales</h3>'+
-            '<form action="">' +
-                '<div class="form-group">'+
-                    '<label for="">Nombre</label>'+
-                    '<input class="form-control"  type="text" required>'+
-                '</div>'+
-                '<div class="form-group">'+
-                    '<label for="">Email</label>'+
-                    '<input class="form-control"  type="email" required>'+
-                '</div>'+
-                '<div class="form-group d-flex flex-row justify-content-between flex-wrap telefono">'+
-                    '<label class="w-100" for="" >Telefono</label>'+
-                    '<input class="form-control col-xs-1 col-md-2"  type="text" placeholder="011" required>'+
-                    '<input class="form-control col-xs-11 col-md-9"  type="text" placeholder="53441515" required>'+
-                '</div>'+
-                '<div class="form-group cuotas">'+
-                    '<label for="">Cantidad de Cuotas</label>' +
-                    '<select class="form-control" name="" id="">'+
-                        '<option value=""></option>'+
-                        '<option value=""></option>'+
-                        '<option value=""></option>'+
-                        '<option value=""></option>'+
-                    '</select>'+
-                '</div>'+
-                '<h3>Datos de la tarjeta de Credito</h3>'+
-                '<div class="tarjeta_finalizarCompra">'+
-                    '<div class="row justify-content-between">'+
-                        '<div class="col-md-12">'+
-                            '<img src="img/credit_card.svg">'+
-                        '</div>'+
-                        '<div class="col-md-7 izquierda_tarjeta">'+
-                            '<label for="">Número de tarjeta</label>'+
-                            '<input class="numeroDeTarjeta" type="text" name="" id="" placeholder="0000 - 0000 - 0000 - 0000">'+
-                            '<label for="">Nombre</label>'+
-                            '<input type="text" name="" id="" placeholder="PEREZ JUAN">'+
-                            '<label for="">cvc</label>'+
-                            '<input type="text" name="" id="" placeholder="000">'+
-                        '</div>'+
-                        '<div class="col-md-4 derecha_tarjeta">'+
-                            '<div class="row">'+
-                                '<div class="col-md-6">'+
-                                    '<label for="">Desde</label>'+
-                                    '<input type="text" name="" id="" placeholder="00/00">'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                    '<label for="">Hasta</label>'+
-                                    '<input type="text" name="" id="" placeholder="00/00">'+
-                                '</div>'+
-                            '</div>'+
-                        '</div>'+
-                    '</div>'+
-                '</div>'+
-                '<div class="form-group">'+
-                    '<input class="btn btn-primary" type="button" value="Confirmar compra">'+
-                '</div>'+
-            '</form>'+
-        '</div>' +
-    '</div>'
+let finalizarCompraPage = $(`
+    <div class="d-flex justify-content-between finalizarCompra row">
+        <h1 class="col-md-12">Finalizá tu compra</h1>
+        <div class="productos_finalizarCompra col-md-4">
+            <div class="total">
+                <p>Total</p>
+            </div>
+        </div>
+        <div class="datosPersonales_finalizarCompra col-md-7">
+            <h3>Datos Personales</h3>
+            <form action="">
+                <div class="form-group">
+                    <label for="">Nombre</label>
+                    <input class="form-control"  type="text" required>
+                </div>
+                <div class="form-group">
+                    <label for="">Email</label>
+                    <input class="form-control"  type="email" required>
+                </div>
+                <div class="form-group d-flex flex-row justify-content-between flex-wrap telefono">
+                    <label class="w-100" for="" >Telefono</label>
+                    <input class="form-control col-xs-1 col-md-2"  type="text" placeholder="011" required>
+                    <input class="form-control col-xs-11 col-md-9"  type="text" placeholder="53441515" required>
+                </div>
+                <div class="form-group cuotas">
+                    <label for="">Cantidad de Cuotas</label>
+                    <select class="form-control" name="" id="">
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                    </select>
+                </div>
+                <h3>Datos de la tarjeta de Credito</h3>
+                <div class="tarjeta_finalizarCompra">
+                    <div class="row justify-content-between">
+                        <div class="col-md-12">
+                            <img src="img/credit_card.svg">
+                        </div>
+                        <div class="col-md-7 izquierda_tarjeta">
+                            <label for="">Número de tarjeta</label>
+                            <input class="numeroDeTarjeta" type="text" name="" id="" placeholder="0000 - 0000 - 0000 - 0000">
+                            <label for="">Nombre</label>
+                            <input type="text" name="" id="" placeholder="PEREZ JUAN">
+                            <label for="">cvc</label>
+                            <input type="text" name="" id="" placeholder="000">
+                        </div>
+                        <div class="col-md-4 derecha_tarjeta">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="">Desde</label>
+                                    <input type="text" name="" id="" placeholder="00/00">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="">Hasta</label>
+                                    <input type="text" name="" id="" placeholder="00/00">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input class="btn btn-primary" type="button" value="Confirmar compra">
+                </div>
+            </form>
+        </div>
+    </div>
+    `
 )
 
 //DOCUMENT READY FUNCTION
@@ -169,7 +187,7 @@ $( () => {
                 // --------------------------------------------//
                 // ------------- Mostrar destacados -----------//
                 // --------------------------------------------//
-    $.when( dolarAjaxCall() , productosAjaxCall() ).done( (status) => {
+    $.when( dolarAjaxCall() , productosAjaxCall() ).done( () => {
         for (const iterator of productos_data) {
             productos.push(new TodosLosProductos(iterator.identificador, iterator.nombre, iterator.precio, iterator.categoria, iterator.especificaciones))
             if (iterator.destacado === true) crearEstructura(iterator, $('.grid'));
@@ -275,9 +293,9 @@ $( () => {
         cero++;
         let contador = $('#contador')
         //PRECIO EN EL PRODUCTO
-        let precio = e.currentTarget.nextSibling.innerHTML
+        let precio = e.currentTarget.nextElementSibling.innerHTML
         //NOMBRE EN EL PRODUCTO
-        let nombre = e.currentTarget.parentElement.parentElement.firstChild.innerHTML
+        let nombre = e.currentTarget.parentElement.parentElement.firstElementChild.innerHTML
         let productoDiv = e.currentTarget.parentElement.parentElement
         let productoId = $(productoDiv).attr('class').replaceAll('unProducto fadeIn ', '')
         //CREAMOS LA NOTIFICACIÓN
@@ -316,8 +334,8 @@ $( () => {
                 // ---------------------------------------//
     $('.carritoInner').on('click', 'a.quitar', (e) => {
         e.stopPropagation()
-        let nombre = e.target.previousSibling.firstChild.innerHTML
-        let precio = e.target.previousSibling.lastChild.innerHTML
+        let nombre = e.currentTarget.previousElementSibling.firstElementChild.innerHTML
+        let precio = e.currentTarget.previousElementSibling.lastElementChild.innerHTML
         //ANTES DE DISMINUIR CERO UTILIZAMOS SU VALOR PARA 
         //REMOVER LOS PRODUCTOS EN SESSION STORAGE
         sessionStorage.removeItem('producto_' + cero)
@@ -439,15 +457,17 @@ let crearEstructura =  (producto, donde) => {
     //TOMAMOS EL NOMBRE Y LE SACAMOS LOS ESPACIOS PARA USARLO EN EL SRC DE LA FOTO
     let nombreParaFoto = producto.nombre.replaceAll(' ', '_')
     //ESTRUCTURA BASICA DE PRODUCTO
-    let estructuraBasica = $(
-        '<div class="unProducto fadeIn ' + producto.identificador + '">' + 
-            '<p>' + producto.nombre + '</p>' +
-            '<img class="imgResponsive" src="img/productos/' + nombreParaFoto + '.jpg" >' +
-            '<div class="d-flex justify-content-between align-items-center">' +
-                '<a class="btn btn-primary agregar">Agregar</a>' +
-                '<p class="precio">' + precioEnPesos + '</p>' +
-            '</div>' +
-        '</div>'
+    let estructuraBasica = $(`
+        <div class="unProducto fadeIn ${producto.identificador}">
+            <p>${producto.nombre}</p>
+            <img class="imgResponsive" src="img/productos/${nombreParaFoto}.jpg" >
+            <div class="d-flex justify-content-between align-items-center">
+                <a class="btn btn-primary agregar">Agregar</a>
+                <p class="precio">${precioEnPesos} </p>
+            </div>
+        </div>'
+    `
+        
     );
     $(donde).append(estructuraBasica);
 }
@@ -458,18 +478,19 @@ let crearEstructura =  (producto, donde) => {
 //COMO PARAMENTROS LE PASAMOS EL NOMBRE DEL PRODUCTO AGREGADO Y EL PRECIO
 let crearToast = (nombre, precio, clase, texto) => {
     //CHEQUIEMOS SI EL CARRITO ESTA ABIERTO (DISPARA SOLO CUANDO SACAMOS COSAS DEL CARRITO)
-    let nuevoToast = $(
-        '<div class="toast d-flex flex-column justify-self-end ' + clase + '">' + 
-            '<div class="toastInner">' +
-                '<p>Producto ' + texto + ' carrito: </p>' +
-                '<p>' + nombre + '</p>' +
-                '<p>' + precio + '</p>' +
-            '</div>' +
-            '<div class="close">' +
-                '<a>Cerrar</a>' +
-            '</div>' +
-        '</div>'
-        )
+    let nuevoToast = $(`
+            <div class="toast d-flex flex-column justify-self-end ${clase}">
+            <div class="toastInner">
+                <p>Producto  ${texto}  carrito: </p>
+                <p> ${nombre} </p>
+                <p> ${precio} </p>
+            </div>
+            <div class="close">
+                <a>Cerrar</a>
+            </div>
+        </div>
+    `
+    )
     //$(nuevoToast).hide().appendTo('.toastContainer').slideDown()
     $('.toastContainer').append(nuevoToast);
     //LAS NOTIFICACIONES DESAPARECEN LUEGO DE 6 SEGUNDOS
@@ -482,15 +503,16 @@ let crearToast = (nombre, precio, clase, texto) => {
 }
 
 let crearProductoEnCarrito = (donde, nombre, precio, imagen, productoId) => {
-    let nuevoProductoEnCarrito = $(
-        '<div id="' + productoId + '" class="d-flex flex-row carrito-item justify-content-between">' +
-            '<img src="img/productos/' + imagen + '.jpg" >' +
-            '<div>' +
-                '<p class="carritoNombre">' + nombre + '</p>' +
-                '<p class="carritoPrecio">' + precio + '</p>' +
-            '</div>' +
-            '<a class="btn btn-danger quitar">-</a>' +
-        '</div>'
+    let nuevoProductoEnCarrito = $(`
+        <div id="${productoId}" class="d-flex flex-row carrito-item justify-content-between">
+            <img src="img/productos/${imagen}.jpg" >
+            <div>
+                <p class="carritoNombre">${nombre}</p>
+                <p class="carritoPrecio">${precio}</p>
+            </div>
+            <a class="btn btn-danger quitar">-</a>
+        </div>
+    `
     ).fadeIn(3000);
     $(donde).prepend(nuevoProductoEnCarrito);
 };
@@ -508,20 +530,22 @@ let botonCerrarToast = () => {
 let productosEnFinalizarCompra = (producto, donde) => {
     let imagen = producto.nombre.replaceAll(' ', '_')
     let precioEnPesos = parseInt(producto.precio) * parseInt(dolarOficial())
-    let productoDiv = $(
-        '<div class="producto_finalizarCompra">' + 
-            '<img src="img/productos/' + imagen + '.jpg" alt="">' +
-            '<p>' + producto.nombre + '</p>' +
-            '<p>' + precioEnPesos + '</p>' +
-        '</div>' +
-        '<hr>'
+    let productoDiv = $(`
+        <div class="producto_finalizarCompra">
+            <img src="img/productos/${imagen}.jpg" alt="">
+            <p>${producto.nombre}</p>
+            <p>${precioEnPesos}</p>
+        </div>
+        <hr>
+    `
+        
     )
     donde.prepend(productoDiv)
 };
 
 let funcionCuotas = (precioTotal, indice, cantidadDeCuotas) => {
     let precioTotalParaCuotas = precioTotal / cantidadDeCuotas;
-    let concatenacionHMLT = cantidadDeCuotas + ' Cuotas de $ ' +precioTotalParaCuotas.toFixed(2);
+    let concatenacionHMLT = cantidadDeCuotas + ' Pagos de $ ' + precioTotalParaCuotas.toFixed(2);
     let concatenacionSelector = '.cuotas option:nth-child(' + ( indice + 1 ) + ')';
     $(concatenacionSelector).html(concatenacionHMLT);
 };
