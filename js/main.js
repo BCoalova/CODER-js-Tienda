@@ -19,12 +19,11 @@ class CompraRealizada {
         this.nombre = nombre;
         this.email = email;
         this.pretelefono = pretelefono;
-        this.pretelefono = pretelefono;
         this.telefono = telefono;
         this.cuotas = cuotas;
         this.productosComprados = productosComprados;
-    }
-}
+    };
+};
 
                 // --------------------------------------------//
                 // ------------- VARIABLES GLOBALES -----------//
@@ -32,7 +31,8 @@ class CompraRealizada {
 var cero = 0;
 let productos = [];
 let productosComprados = [];
-var total = 0
+let productosCompradosPrecioTotal = [];
+var total = 0;
                 // --------------------------------------------//
                 // ---------------- VARIABLES DE --------------//
                 // --------------- ESTRUCTURA HTML ------------//
@@ -53,7 +53,6 @@ let carrito = $(`
         <a href="#/FinalizaCompra" class="comprar btn btn-primary hidden">Comprar</a>
         </div>
     `
-    
 );
 let noHayProductos = $('<p class="noHayProductos">Agregá productos a tu Carrito!</p>');
                 // --------------------------------------------//
@@ -116,24 +115,23 @@ let finalizarCompraPage = $(`
             </div>
         </div>
         <div class="datosPersonales_finalizarCompra col-md-7">
-            <h3>Datos Personales</h3>
-            <form action="">
+            <h3>Datos Personales (values por defecto para no tener que tipear)</h3>
+            <form onsubmit="return false" class="finalizarCompraForm">
                 <div class="form-group">
-                    <label for="">Nombre</label>
-                    <input class="form-control"  type="text" required>
+                    <label for="nombre">Nombre</label>
+                    <input class="form-control"  type="text" id="nombre" value="Juan Perez">
                 </div>
                 <div class="form-group">
-                    <label for="">Email</label>
-                    <input class="form-control"  type="email" required>
+                    <label for="email">Email</label>
+                    <input class="form-control"  type="email" id="email" value="jperez@email.com">
                 </div>
                 <div class="form-group d-flex flex-row justify-content-between flex-wrap telefono">
-                    <label class="w-100" for="" >Telefono</label>
-                    <input class="form-control col-xs-1 col-md-2"  type="text" placeholder="011" required>
-                    <input class="form-control col-xs-11 col-md-9"  type="text" placeholder="53441515" required>
+                    <label class="w-100" for="tel" >Telefono</label>
+                    <input class="form-control"  type="text" value="1553441515" id="tel">
                 </div>
                 <div class="form-group cuotas">
-                    <label for="">Cantidad de Cuotas</label>
-                    <select class="form-control" name="" id="">
+                    <label for="cuotas">Cantidad de Cuotas</label>
+                    <select class="form-control" name="" id="cuotas">
                         <option value=""></option>
                         <option value=""></option>
                         <option value=""></option>
@@ -147,36 +145,39 @@ let finalizarCompraPage = $(`
                             <img src="img/credit_card.svg">
                         </div>
                         <div class="col-md-7 izquierda_tarjeta">
-                            <label for="">Número de tarjeta</label>
-                            <input class="numeroDeTarjeta" type="text" name="" id="" placeholder="0000 - 0000 - 0000 - 0000">
-                            <label for="">Nombre</label>
-                            <input type="text" name="" id="" placeholder="PEREZ JUAN">
-                            <label for="">cvc</label>
-                            <input type="text" name="" id="" placeholder="000">
+                            <label for="creditCardNumber">Número de tarjeta</label>
+                            <input class="numeroDeTarjeta" type="text" name="" id="creditCardNumber" value="1213-91011-5678-1234">
+                            <label for="creditCardName">Nombre</label>
+                            <input type="text" name="" id="creditCardName" value="PEREZ JUAN">
+                            <label for="creditCardCVC">cvc</label>
+                            <input type="text" name="" id="creditCardCVC" value="000">
                         </div>
                         <div class="col-md-4 derecha_tarjeta">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="">Desde</label>
-                                    <input type="text" name="" id="" placeholder="00/00">
+                                    <label for="creditCardDesde">Desde</label>
+                                    <input type="text" name="" id="creditCardDesde" value="00/00">
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="">Hasta</label>
-                                    <input type="text" name="" id="" placeholder="00/00">
+                                    <label for="credictCardHasta">Hasta</label>
+                                    <input type="text" name="" id="credictCardHasta" value="00/00">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input class="btn btn-primary" type="button" value="Confirmar compra">
+                    <input class="btn btn-primary" type="submit" value="Confirmar compra">
                 </div>
             </form>
         </div>
     </div>
     `
-)
+);
 
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------//
+// ---------------------------------------------------------------------------------------------------------------------------------------------//
 //DOCUMENT READY FUNCTION
 $( () => {
     $('section').append(grid_container)
@@ -431,9 +432,68 @@ $( () => {
         for (var i = 0; i < optionsCuotas.length; i++) {
             funcionCuotas(precioTotal, i, optionsCuotas[i])
         }
-    })
+        productosCompradosPrecioTotal.push(precioTotal)
+    });
 
+                // ----------------------------------------//
+                // ---------------- BOTÓN -----------------//
+                // ----------------- PARA -----------------//
+                // --------------- FINALIZAR --------------//
+                // ---------------- COMPRA ----------------//
+                // ----------------------------------------//
+
+    $('body').on('submit', '.finalizarCompraForm', function(e){
+
+        let nombre =  e.target[0].value;
+        let email =  e.target[1].value;
+        let tel =  e.target[2].value;
+        let cuotas =  e.target[3].value.replaceAll('_', ' Cuotas de: $');
+        let creditCardNumber =  e.target[4].value;
+        let creditCardName =  e.target[5].value;
+        let creditCardCVC =  e.target[6].value;
+        let creditCardDesde =  e.target[7].value;
+        let credictCardHasta =  e.target[8].value;
+        let url = "https://jsonplaceholder.typicode.com/posts";
+
+        // SIMULACIÓN DE AJAX POST
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: {
+                nombre: nombre,
+                email: email,
+                tel: tel,
+                cuotas: cuotas,
+                creditCardNumber: creditCardNumber,
+                creditCardName: creditCardName,
+                creditCardCVC: creditCardCVC,
+                creditCardDesde: creditCardDesde,
+                credictCardHasta: credictCardHasta,
+                dataProductosComprados: productosComprados,
+                dataPrecioTotal: productosCompradosPrecioTotal[0],
+            },
+            beforeSend: function() {
+                $('.finalizarCompra').html('')
+                $('.finalizarCompra').addClass('compraFinalizada')
+                $('.finalizarCompra.compraFinalizada').removeClass('finalizarCompra')
+                $('.compraFinalizada').append(cargandoAnimacion)
+                $('#loader').removeClass('hidden')
+            },
+            success: function(data) {
+                compraRealizadaConExito(data)
+            },
+            complete: function () { 
+                $('#loader').addClass('hidden')
+            }
+        });
+    });
 });
+
+
+
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------//
+// ---------------------------------------------------------------------------------------------------------------------------------------------//
 
                 // ------------------------------------------//
                 // ---------------- FUNCIONES ---------------//
@@ -545,8 +605,23 @@ let productosEnFinalizarCompra = (producto, donde) => {
 
 let funcionCuotas = (precioTotal, indice, cantidadDeCuotas) => {
     let precioTotalParaCuotas = precioTotal / cantidadDeCuotas;
+    let value = cantidadDeCuotas + '_' + precioTotalParaCuotas.toFixed(2);
     let concatenacionHMLT = cantidadDeCuotas + ' Pagos de $ ' + precioTotalParaCuotas.toFixed(2);
     let concatenacionSelector = '.cuotas option:nth-child(' + ( indice + 1 ) + ')';
+    $(concatenacionSelector).val(value)
     $(concatenacionSelector).html(concatenacionHMLT);
 };
 
+let compraRealizadaConExito = (data) => {
+    let creditCardNumberLast4 = data.creditCardNumber.substr(16)
+    let mensajeCompra =  `
+        <div class="col-md-12">
+            <h3>¡Gracias ${data.nombre} por elegirnos!</h3>
+            <p>¡El pago fue realizado con exito!</p>
+            <p>Corroborá las instrucciones de retiro en tu correo: ${data.email}</p>
+            <p>Pagaste $ ${data.dataPrecioTotal} en ${data.cuotas}</p>
+            <p>Con la tarjeta número: **** - **** - **** - ${creditCardNumberLast4}</p>
+        </div>
+    `;
+    $('.compraFinalizada').append(mensajeCompra)
+}

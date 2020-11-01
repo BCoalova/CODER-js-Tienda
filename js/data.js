@@ -21,7 +21,6 @@ let productosAjaxCall = () => {
             }
         },
         complete: function () { 
-            //SE LE AGREGA UN POCO DE RETRASO PARA QUE SE VEA LA ANIMACIÓN
             $('#loader').addClass('hidden')
             
         },

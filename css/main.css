@@ -685,4 +685,10 @@ aside .precioRange input#rangeSlider_inversed[type='range']::-webkit-slider-thum
 .finalizarCompra .datosPersonales_finalizarCompra .tarjeta_finalizarCompra .derecha_tarjeta input {
   width: 80%;
 }
+
+.compraFinalizada {
+  background: white;
+  text-align: center;
+  padding: 2.5rem;
+}
 /*# sourceMappingURL=main.css.map */
