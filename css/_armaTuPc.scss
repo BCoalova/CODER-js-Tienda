@@ -263,7 +263,7 @@ aside {
         } */
         output {
             &:before {
-                content: 'u$S '
+                content: '$ '
             }
         }
         input[type="range"] {

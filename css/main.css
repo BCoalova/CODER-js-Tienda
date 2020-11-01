@@ -427,7 +427,7 @@ aside .precioRange {
 }
 
 aside .precioRange output:before {
-  content: 'u$S ';
+  content: '$ ';
 }
 
 aside .precioRange input[type="range"] {

@@ -93,11 +93,11 @@ let precioRango = $(`
     <p>Rango de precio</p>
     <form onsubmit="return false" class="precioRange d-flex flex-column">
         <label for="rangeSlider_inversed">Mínimo:</label>
-        <input id="rangeSlider_inversed" type="range" min="80" max="900" value="80"></input>
-        <output>80</output>
+        <input id="rangeSlider_inversed" type="range" min="5000" max="100000" value="5000"></input>
+        <output>5000</output>
         <label for="rangeSlider">Máximo:</label>
-        <input id="rangeSlider" type="range" min="80" max="900" value="900"></input>
-        <output>900</output>
+        <input id="rangeSlider" type="range" min="5000" max="70000" value="70000"></input>
+        <output>70000</output>
         <input class="btn btn-primary" type="submit" value="Aplicar">
     </div>
     `
@@ -242,13 +242,19 @@ $( () => {
                 // ---------------------------------------------//
     $('aside').append(precioRango)
     $('aside').on('submit', 'form.precioRange', (e) => {
+        let precioEnValueMayor = e.target[2].value
+        let precioEnValueMenor = e.target[0].value
+        
         for (const producto of $('.unProducto')) {
-            let precioEnProducto = $(producto).children('div')[0].lastChild.innerHTML
-            if (precioEnProducto > e.target[0].value && precioEnProducto < e.target[2].value) {
+            
+            let precioEnProducto = $(producto).children('div')[0].lastElementChild.innerHTML
+
+            if (precioEnProducto > precioEnValueMenor && precioEnProducto < precioEnValueMayor) {
 
             } else {
                 producto.remove()
             }
+
         }
     });
     //CAMBIAMOS EL VALOR DE OUTPUT PARA QUE CAMBIE CON EL CALUE 
