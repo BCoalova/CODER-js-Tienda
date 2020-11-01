@@ -479,7 +479,7 @@ $( () => {
                 $('.compraFinalizada').append(cargandoAnimacion)
                 $('#loader').removeClass('hidden')
             },
-            success: function(data) {
+            success: function (data) {
                 compraRealizadaConExito(data)
             },
             complete: function () { 
@@ -488,8 +488,6 @@ $( () => {
         });
     });
 });
-
-
 
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------//
