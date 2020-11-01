@@ -249,7 +249,7 @@ $( () => {
             
             let precioEnProducto = $(producto).children('div')[0].lastElementChild.innerHTML
 
-            if (precioEnProducto > precioEnValueMenor && precioEnProducto < precioEnValueMayor) {
+            if (parseInt(precioEnProducto) > parseInt(precioEnValueMenor) && parseInt(precioEnProducto) < parseInt(precioEnValueMayor)) {
 
             } else {
                 producto.remove()
