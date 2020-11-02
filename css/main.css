@@ -45,6 +45,10 @@ a:not([href]) {
   margin-top: 1rem;
 }
 
+.bootstrapOverwrites .navbar a.navbar-brand img {
+  width: 220px;
+}
+
 .bootstrapOverwrites .navbar form {
   margin-right: 1.6rem;
 }
@@ -347,7 +351,7 @@ form.form-inline input.form-control {
   -webkit-transform: translateX(0);
           transform: translateX(0);
   position: fixed;
-  top: 82px;
+  top: 96.17px;
   right: 0;
   height: 100%;
   -webkit-transition: all .3s ease-in-out;

@@ -3,6 +3,9 @@
         background-color: $verde !important;
         padding: 0rem 1rem .5rem 1rem;
         a.navbar-brand {
+            img {
+                width: 220px;
+            }
             color:#fff;
             font-size: 2rem;
             text-transform: uppercase;

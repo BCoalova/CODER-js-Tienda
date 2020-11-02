@@ -621,7 +621,7 @@ let compraRealizadaConExito = (data) => {
     let mensajeCompra =  `
         <div class="col-md-12">
             <h3>¡Gracias ${data.nombre} por elegirnos!</h3>
-            <p>¡El pago fue realizado con exito!</p>
+            <p>¡El pago fue realizado con éxito!</p>
             <p>Corroborá las instrucciones de retiro en tu correo: ${data.email}</p>
             <p>Pagaste $ ${data.dataPrecioTotal} en ${data.cuotas}</p>
             <p>Con la tarjeta número: **** - **** - **** - ${creditCardNumberLast4}</p>
