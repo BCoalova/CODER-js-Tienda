@@ -31,7 +31,7 @@
 {"identificador": "AMD_MOBO_8", "nombre": "ROG Crosshair VII Hero", "precio": 320, "categoria": "MOBO", "especificaciones": {"Chipset": "X470", "Socket": "AM4", "Tamaño": "ATX"}, "destacado": false},
 {"identificador": "AMD_MOBO_9", "nombre": "ROG Crosshair VIII Hero", "precio": 359, "categoria": "MOBO", "especificaciones": {"Chipset": "X570", "Socket": "AM4", "Tamaño": "ATX"}, "destacado": true},
 {"identificador": "AMD_MOBO_10", "nombre": "ROG Strix B450-F Gaming", "precio": 189, "categoria": "MOBO", "especificaciones": {"Chipset": "B450", "Socket": "AM4", "Tamaño": "ATX"}, "destacado": false},
-{"identificador": "AMD_MOBO_11", "nombre": "ROG Strix B550-F GAMING", "precio": 203, "categoria": "MOBO", "especificaciones": {"Chipset": "B550", "Socket": "AM4", "Tamaño": "ATX"}, "destacado": false},
+{"identificador": "AMD_MOBO_11", "nombre": "ROG STRIX B550-F GAMING", "precio": 203, "categoria": "MOBO", "especificaciones": {"Chipset": "B550", "Socket": "AM4", "Tamaño": "ATX"}, "destacado": false},
 {"identificador": "AMD_MOBO_12", "nombre": "ROG Strix X470-F Gaming", "precio": 273, "categoria": "MOBO", "especificaciones": {"Chipset": "X470", "Socket": "AM4", "Tamaño": "ATX"}, "destacado": false},
 {"identificador": "AMD_MOBO_13", "nombre": "ROG Strix X570-F Gaming", "precio": 299, "categoria": "MOBO", "especificaciones": {"Chipset": "X570", "Socket": "AM4", "Tamaño": "ATX"}, "destacado": true},
 {"identificador": "AMD_MOBO_14", "nombre": "TUF B450-Plus Gaming", "precio": 109, "categoria": "MOBO", "especificaciones": {"Chipset": "B450", "Socket": "AM4", "Tamaño": "ATX"}, "destacado": false},
