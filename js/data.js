@@ -22,7 +22,6 @@ let productosAjaxCall = () => {
         },
         complete: function () { 
             $('#loader').addClass('hidden')
-            
         },
     });
 }
@@ -50,3 +49,33 @@ let dolarAjaxCall = () => {
         
     });
 }
+
+
+                // --------------------------------------//
+                // ----------------- SVG ----------------//
+                // --------------------------------------//
+let logoContainer = $('a.navbar-brand');
+let logoUrl = "img/logo.svg";
+
+let carritoContainer = $('li.carrito');
+let carritoUrl = 'img/shopping-cart-solid.svg';
+
+$(function () {
+
+    $.get(logoUrl, null,
+        function (data) {
+            console.log(data);
+            $("svg", data).prependTo(logoContainer);
+        },
+        'xml'
+    );
+
+    $.get(carritoUrl, null,
+        function (data) {
+            console.log(data);
+            $("svg", data).prependTo(carritoContainer);
+        },
+        'xml'
+    );
+
+});

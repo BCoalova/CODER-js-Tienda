@@ -45,7 +45,7 @@ a:not([href]) {
   margin-top: 1rem;
 }
 
-.bootstrapOverwrites .navbar a.navbar-brand img {
+.bootstrapOverwrites .navbar a.navbar-brand svg {
   width: 220px;
 }
 
