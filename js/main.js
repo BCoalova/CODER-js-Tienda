@@ -14,13 +14,11 @@ class TodosLosProductos {
     };
 };
 
-class CompraRealizada {
-    constructor(nombre, email, pretelefono, telefono, cuotas, productosComprados) {
+class Cliente {
+    constructor(nombre, email, telefono, productosComprados) {
         this.nombre = nombre;
         this.email = email;
-        this.pretelefono = pretelefono;
         this.telefono = telefono;
-        this.cuotas = cuotas;
         this.productosComprados = productosComprados;
     };
 };
@@ -460,7 +458,8 @@ $( () => {
         let creditCardDesde =  e.target[7].value;
         let credictCardHasta =  e.target[8].value;
         let url = "https://jsonplaceholder.typicode.com/posts";
-
+        new Cliente (nombre, email, tel, productosComprados)
+        
         // SIMULACIÓN DE AJAX POST
         $.ajax({
             url: url,
@@ -482,6 +481,8 @@ $( () => {
                 $('.finalizarCompra').html('')
                 $('.finalizarCompra').addClass('compraFinalizada')
                 $('.finalizarCompra.compraFinalizada').removeClass('finalizarCompra')
+                $(cargandoAnimacion).removeClass('col-md-10');
+                $(cargandoAnimacion).addClass('col-md-12');
                 $('.compraFinalizada').append(cargandoAnimacion)
                 $('#loader').removeClass('hidden')
             },
@@ -620,9 +621,9 @@ let compraRealizadaConExito = (data) => {
     let creditCardNumberLast4 = data.creditCardNumber.substr(16)
     let mensajeCompra =  `
         <div class="col-md-12">
-            <h3>¡Gracias ${data.nombre} por elegirnos!</h3>
+            <h3>¡Gracias <span class="greenColor">${data.nombre}</span> por elegirnos!</h3>
             <p>¡El pago fue realizado con éxito!</p>
-            <p>Corroborá las instrucciones de retiro en tu correo: ${data.email}</p>
+            <p>Corroborá las instrucciones de retiro en tu correo: <span class="greenColor">${data.email}</span></p>
             <p>Pagaste $ ${data.dataPrecioTotal} en ${data.cuotas}</p>
             <p>Con la tarjeta número: **** - **** - **** - ${creditCardNumberLast4}</p>
         </div>

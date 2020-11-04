@@ -121,9 +121,14 @@ form.form-inline input.form-control {
   width: calc(100% - 100px);
 }
 
+form input[type="submit"] {
+  margin-top: 18px;
+}
+
 .grid-container {
   background-color: #ffffff;
   padding: 2rem;
+  border-radius: 5px;
 }
 
 .grid {
@@ -169,7 +174,7 @@ form.form-inline input.form-control {
 }
 
 .unProducto img {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .unProducto div {
@@ -694,5 +699,18 @@ aside .precioRange input#rangeSlider_inversed[type='range']::-webkit-slider-thum
   background: white;
   text-align: center;
   padding: 2.5rem;
+  border-radius: 5px;
+}
+
+.compraFinalizada h3 {
+  margin-bottom: 22px;
+}
+
+.compraFinalizada span.greenColor {
+  color: #92c800;
+}
+
+.compraFinalizada p:last-child {
+  margin-bottom: 0;
 }
 /*# sourceMappingURL=main.css.map */

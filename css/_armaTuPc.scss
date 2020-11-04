@@ -22,9 +22,15 @@ form.form-inline {
         width: calc(100% - 100px);
     }
 }
+form {
+    input[type="submit"] {
+        margin-top: 18px;
+    }
+}
 .grid-container {
     background-color: #ffffff;
     padding: 2rem;
+    border-radius: 5px;
 }
 .grid {
     display: grid;
@@ -55,7 +61,7 @@ form.form-inline {
     padding: 1rem;
     
     img {
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
     }
     div {
         width: 100%;
@@ -454,4 +460,16 @@ aside {
     background: white;
     text-align: center;
     padding: 2.5rem;
+    border-radius: 5px;
+    h3 {
+        margin-bottom: 22px;
+    }
+    span {
+        &.greenColor {
+            color: $verde;
+        }
+    }
+    p:last-child {
+        margin-bottom: 0;
+    }
 }
