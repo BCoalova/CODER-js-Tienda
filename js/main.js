@@ -629,4 +629,4 @@ let compraRealizadaConExito = (data) => {
         </div>
     `;
     $('.compraFinalizada').append(mensajeCompra)
-}
+} 
